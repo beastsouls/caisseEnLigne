@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
+
 import projet.CodePromo.model.CodePromo;
 import projet.CodePromo.repository.CodePromoRepository;
+import projet.client.model.Client;
 import projet.client.repository.ClientRepository;
 import projet.facture.model.FactureModel;
 import projet.facture.repository.FactureRepository;
@@ -249,6 +251,16 @@ public class Controlleur {
 		lafacture.setMontant(montant * 1.20);
 		factureRepository.save(lafacture);
 		model.addAttribute("factur", factureRepository.findAll());
+		
+		Client c = clientRepository.findByName(nom);
+		System.out.println("le client est " + c.getName());
+		System.out.println("\n la somme actuelle du client est " + c.getSommePayer());
+		c.setSommePayer(c.getSommePayer() + (montant * 1.20));
+		System.out.println("\n la somme modifier du client est " + c.getSommePayer());
+		clientRepository.save(c);
+
+		
+		
 		return "facture";
 	}
 	

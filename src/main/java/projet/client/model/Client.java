@@ -31,6 +31,18 @@ public class Client {
 	@Size(min=2, max=30)
 	private String Adresse;
 	
+	private double SommePayer = 0;
+	
+	public double getSommePayer() {
+		return SommePayer;
+	}
+
+
+	public void setSommePayer(double sommePayer) {
+		SommePayer = sommePayer;
+	}
+
+
 	public long getId() {
 		return id;
 	}
