@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Client</title>
+<link rel="stylesheet" type="text/css" href="/cClient.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+</head>
+<body>
+
+<div class="wrapper">
+	<div th:switch="${client.id}" >
+		<h1 th:case="-1">Creer un nouveau client</h1>
+		<h1 th:case="*">Editer un client existant</h1>
+	</div>
+
+
+	<form action="#" th:object="${client}" method="post">
+		<input type="text" th:field="*{name}" placeholder="Name" class="name" STYLE='color:black'/>
+		<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+			<div>
+				<p class="name-help">Nom et le prénom du client.</p>
+			</div>
+			
+		<input type="text" th:field="*{compagnie}" placeholder="compagnie" class="compagnie" STYLE='color:black'/>
+		<span th:if="${#fields.hasErrors('compagnie')}" th:errors="*{compagnie}"></span>
+			<div>
+				<p class="compagnie-help">Rentrer le nom de l'entreprise.</p>
+			</div>
+	
+		
+		<input type="text" th:field="*{Email}" placeholder="Email" class="Email" STYLE='color:black'/>
+		<span th:if="${#fields.hasErrors('Email')}" th:errors="*{Email}"></span>
+			<div>
+				<p class="Email-help">Adresse e-mail valide du client.</p>
+			</div>
+		
+		
+		<input type="text" th:field="*{Adresse}" placeholder="Adresse" class="Adresse" STYLE='color:black'/>
+		<span th:if="${#fields.hasErrors('Adresse')}" th:errors="*{Adresse}"></span>
+			<div>
+				<p class="Adresse-help">Coordonnée du client.</p>
+			</div>
+			
+		 
+		<input type="text" th:field="*{role}" placeholder="role" class="role" STYLE='color:black'/>
+		<span th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></span>
+			<div>
+				<p class="role-help">Role du client.</p>
+			</div>
+			
+		
+		<table>
+			<td><form ACTION="../client/"><INPUT TYPE="SUBMIT" VALUE="envoyer" class="submit"/></form></td>
+			<td><form ACTION="../client/"><INPUT TYPE="SUBMIT" VALUE="retour" class="submit"/></form></td>
+		</table>
+	</form>
+</div>
+
+</body>
+</html>
+
+<script>
+	$(".name").focus(function() {
+		$(".name-help").slideDown(500);
+	}).blur(function() {
+		$(".name-help").slideUp(500);
+	});
+
+	$(".Email").focus(function() {
+		$(".Email-help").slideDown(500);
+	}).blur(function() {
+		$(".Email-help").slideUp(500);
+	});
+
+	$(".compagnie").focus(function() {
+		$(".compagnie-help").slideDown(500);
+	}).blur(function() {
+		$(".compagnie-help").slideUp(500);
+	});
+
+	$(".Adresse").focus(function() {
+		$(".Adresse-help").slideDown(500);
+	}).blur(function() {
+		$(".Adresse-help").slideUp(500);
+	});
+	
+	$(".role").focus(function() {
+		$(".role-help").slideDown(500);
+	}).blur(function() {
+		$(".role-help").slideUp(500);
+	});
+</script>

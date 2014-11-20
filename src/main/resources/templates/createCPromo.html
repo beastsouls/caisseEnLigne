@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Client</title>
+<link rel="stylesheet" type="text/css" href="/cCode.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="jquery.ui.datepicker-ar.js"></script>
+<script src="jquery.ui.datepicker-fr.js"></script>
+<script src="jquery.ui.datepicker-he.js"></script>
+<script src="jquery.ui.datepicker-zh-TW.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+	<div th:switch="${codePromo.id}" >
+		<h1 th:case="-1">Creer un nouveau code de réduction</h1>
+		<h1 th:case="*">Editer un code existant</h1>
+	</div>
+
+
+	<form action="#" th:object="${codePromo}" method="post">
+		<input type="text" th:field="*{code}" placeholder="Code" class="code" STYLE='color:black'/>
+		<span th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></span>
+			<div>
+				<p class="code-help">Code de la promotion.</p>
+			</div>
+			
+		<input type="text" th:field="*{montant}" placeholder="montant" class="montant" STYLE='color:black'/>
+		<span th:if="${#fields.hasErrors('montant')}" th:errors="*{montant}"></span>
+			<div>
+				<p class="montant-help">Rentrer le montant de la promotion.</p>
+			</div>
+			
+		<input type="text" th:field="*{debut}" placeholder="Date Debut" class="code" STYLE='color:black' name="datedebut"/>
+		<span th:if="${#fields.hasErrors('debut')}" th:errors="debut"></span>
+			<div>
+				<p class="debut-help">Début de la validité de la promotion.</p>
+			</div>
+			
+		<input type="text" th:field="*{fin}" placeholder="Date fin" class="code" STYLE='color:black' name="datefin"/>
+		<span th:if="${#fields.hasErrors('fin')}" th:errors="fin"></span>
+			<div>
+				<p class="fin-help">Fin de la validité de la promotion.</p>
+			</div>
+			
+		<table>
+			<td><form ACTION="/codePromo/"><INPUT TYPE="SUBMIT" VALUE="envoyer" class="submit"/></form></td>
+			<td><form ACTION="/codePromo/"><INPUT TYPE="SUBMIT" VALUE="retour" class="submit"/></form></td>
+		</table>
+	</form>
+</div>
+
+</body>
+</html>
+
+<script>
+	$(".code").focus(function() {
+		$(".code-help").slideDown(500);
+	}).blur(function() {
+		$(".code-help").slideUp(500);
+	});
+
+	$(".montant").focus(function() {
+		$(".montant-help").slideDown(500);
+	}).blur(function() {
+		$(".montant-help").slideUp(500);
+	});
+	
+	$(".debut").focus(function() {
+		$(".debut-help").slideDown(500);
+	}).blur(function() {
+		$(".debut-help").slideUp(500);
+	});
+	
+	$(".fin").focus(function() {
+		$(".fin-help").slideDown(500);
+	}).blur(function() {
+		$(".fin-help").slideUp(500);
+	});
+
+</script>

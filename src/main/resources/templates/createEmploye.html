@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Employe</title>
+<link rel="stylesheet" type="text/css" href="/cEmploye.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+</head>
+<body>
+
+<div class="wrapper">
+	<div th:switch="${employe.id}" >
+		<h1 th:case="-1">Creer un nouveau employe</h1>
+		<h1 th:case="*">Editer un employe existant</h1>
+	</div>
+
+
+	<form action="#"  th:object="${employe}" method="post">
+		<input type="text" th:field="*{name}" placeholder="Name" class="name" STYLE='color:white'/>
+		<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+			<div>
+				<p class="name-help">Nom du employe.</p>
+			</div>
+			
+		<input type="text" th:field="*{prenom}" placeholder="prenom" class="prenom" STYLE='color:white'/>
+		<span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></span>
+			<div>
+				<p class="prenom-help">Rentrer le prenom de l'employé.</p>
+			</div>
+	
+		
+		<input type="text" th:field="*{Email}" placeholder="Email" class="Email" STYLE='color:white'/>
+		<span th:if="${#fields.hasErrors('Email')}" th:errors="*{Email}"></span>
+			<div>
+				<p class="Email-help">Adresse e-mail valide du employe.</p>
+			</div>
+		
+		
+		<input type="text" th:field="*{Adresse}" placeholder="Adresse" class="Adresse" STYLE='color:white'/>
+		<span th:if="${#fields.hasErrors('Adresse')}" th:errors="*{Adresse}"></span>
+			<div>
+				<p class="Adresse-help">Coordonnée du employe.</p>
+			</div>
+			
+		 
+		<input type="text" th:field="*{login}" placeholder="login" class="login" STYLE='color:white'/>
+		<span th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
+			<div>
+				<p class="login-help">login du employe.</p>
+			</div>
+			
+		<input type="text" th:field="*{password}" placeholder="password" class="password" STYLE='color:white'/>
+		<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+			<div>
+				<p class="password-help">password du employe.</p>
+			</div>
+			
+		
+		<table>
+			<td><form ACTION="../employe/"><INPUT TYPE="SUBMIT" VALUE="envoyer" class="submit"/></form></td>
+			<td><form ACTION="../employe/"><INPUT TYPE="SUBMIT" VALUE="retour" class="submit"/></form></td>
+		</table>
+	</form>
+</div>
+
+</body>
+</html>
+
+<script>
+	$(".name").focus(function() {
+		$(".name-help").slideDown(500);
+	}).blur(function() {
+		$(".name-help").slideUp(500);
+	});
+
+	$(".Email").focus(function() {
+		$(".Email-help").slideDown(500);
+	}).blur(function() {
+		$(".Email-help").slideUp(500);
+	});
+
+	$(".prenom").focus(function() {
+		$(".prenom-help").slideDown(500);
+	}).blur(function() {
+		$(".prenom-help").slideUp(500);
+	});
+
+	$(".Adresse").focus(function() {
+		$(".Adresse-help").slideDown(500);
+	}).blur(function() {
+		$(".Adresse-help").slideUp(500);
+	});
+	
+	$(".login").focus(function() {
+		$(".login-help").slideDown(500);
+	}).blur(function() {
+		$(".login-help").slideUp(500);
+	});
+	
+	$(".password").focus(function() {
+		$(".password-help").slideDown(500);
+	}).blur(function() {
+		$(".password-help").slideUp(500);
+	});
+</script>

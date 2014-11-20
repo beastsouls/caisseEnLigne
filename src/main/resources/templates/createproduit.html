@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>produit</title>
+<link rel="stylesheet" type="text/css" href="/cproduit.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/javascript" 
+	src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+</head>
+<body>
+
+	<div class="wrapper">
+		<div th:switch="${produit.id}">
+			<h1 th:case="-1">Creer un nouveau produit</h1>
+			<h1 th:case="*">Editer un produit existant</h1>
+		</div>
+
+
+		<form action="#" th:object="${produit}" method="post" enctype="multipart/form-data">
+			<input type="text" th:field="*{name}" placeholder="Name" class="name" STYLE='color:black'/>
+			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+			<div>
+				<p class="name-help">Nom du produit.</p>
+			</div>
+		<!-- 	<input type="text"  placeholder="type"
+				class="type" />-->
+			
+			
+				<SELECT placeholder="type" size="1" th:field="*{Typeproduit}" STYLE='color:black'>
+					<OPTION value="">----selectionner-----</OPTION>
+					<OPTION value="Nourriture">Nourriture</OPTION>
+					<OPTION value="Boisson">Boisson</OPTION>    
+					<OPTION value="Vetements">Vetements</OPTION>   
+					<OPTION value="Electroménager">Electroménager</OPTION> 
+					<OPTION value="Autre">Autre</OPTION>   
+				</SELECT>
+  		 
+			<div>
+				<p class="type-help">Type du produit.</p>
+			</div>
+	
+		
+		<input type="text" th:field="*{Prix}" placeholder="prix" class="prix" STYLE='color:black' />
+		<span th:if="${#fields.hasErrors('prix')}" th:errors="*{prix}"></span>
+			<div>
+				<p class="prix-help">Prix du produit.</p>
+			</div>
+		
+		
+		<input type="text" th:field="*{stock}" placeholder="stock"	class="stock" STYLE='color:black'/>
+		<span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span>
+			<div>
+				<p class="stock-help">Nombre de produit en stock.</p>
+			</div>
+			
+		<input type="text" th:field="*{description}" placeholder="description" class="description" STYLE='color:black'/>
+		<span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+			<div>
+				<p class="description-help">Description du produit.</p>
+			</div>
+			
+			Image(seulement jpeg) : <input type="file" name="file"/>
+			
+		<table>
+			<td><FORM ACTION="/produit/"><INPUT TYPE="SUBMIT" VALUE="envoyer" class="submit" />	</FORM></td>
+			<td><FORM ACTION="/produit/"><INPUT TYPE="SUBMIT" VALUE="retour" class="submit" />	</FORM></td>
+		</table>
+	
+					</form>
+</div>
+
+</body>
+</html>
+
+<script>
+	$(".name").focus(function() {
+		$(".name-help").slideDown(500);
+	}).blur(function() {
+		$(".name-help").slideUp(500);
+	});
+
+	$(".prix").focus(function() {
+		$(".prix-help").slideDown(500);
+	}).blur(function() {
+		$(".prix-help").slideUp(500);
+	});
+
+	$(".type").focus(function() {
+		$(".type-help").slideDown(500);
+	}).blur(function() {
+		$(".type-help").slideUp(500);
+	});
+
+	$(".stock").focus(function() {
+		$(".stock-help").slideDown(500);
+	}).blur(function() {
+		$(".stock-help").slideUp(500);
+	});
+
+	$(".description").focus(function() {
+		$(".description-help").slideDown(500);
+	}).blur(function() {
+		$(".description-help").slideUp(500);
+	});
+</script>
