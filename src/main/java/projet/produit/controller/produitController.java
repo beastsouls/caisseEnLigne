@@ -105,6 +105,18 @@ public class produitController implements ResourceLoaderAware {
 		return "form";
 	}
 
+	
+	@RequestMapping(value = "/statistique1/", method = RequestMethod.GET)
+	public String stat1() {
+//		 final chart demo = new chart(  "Statistical Bar Chart Demo"    );
+//		 		f.pack();
+//		 		demo.add(f);
+//		        RefineryUtilities.centerFrameOnScreen(f);
+//		        demo.setVisible(true);
+	 return "chart";
+
+	}
+	
 	@RequestMapping(value = "/delete/produit", method = RequestMethod.GET)
 	public String deleteproduit(@RequestParam("id") Long id, Model model) {
 

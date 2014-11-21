@@ -1,0 +1,9 @@
+Evolution des catégories socio-professionnelles
+Emplois en milliers	1982	1990	1998
+agriculteurs exploitants	1466	1005	626
+artisans, commerçants, patrons	1815	1752	1520
+cadres et prof intellect sup	1860	2603	2996
+professions intermédiaires	3784	4464	5268
+employés	5502	5899	6599
+ouvriers	7044	6546	5794
+source : INSEE, recensements. 

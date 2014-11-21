@@ -1,0 +1,122 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #003366;
+}
+
+a {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #0013bf;
+	text-decoration: NONE
+}
+
+ALINK {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #0066ff;
+	text-decoration: NONE
+}
+
+VLINK {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #0013bf;
+	text-decoration: NONE
+}
+
+A:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #0066ff;
+	text-decoration: UNDERLINE
+}
+
+.claire {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	color: #ffd886
+}
+
+.ref {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: normal;
+	color: #3366CC
+}
+
+.txt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #003366
+}
+
+a.txt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #0013bf;
+	text-decoration: none
+}
+
+a:active.txt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #4666ff;
+	text-decoration: NONE
+}
+
+a:visited.txt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #0356a4;
+	text-decoration: NONE
+}
+
+a:hover.txt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	color: #0013bf;
+	text-decoration: UNDERLINE
+}
+
+.rouge {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #cc3333
+}
+
+.titre-rouge {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #cc3333
+}
+
+.titre-bleu {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 10pt;
+	font-style: normal;
+	font-weight: bold;
+	color: #000080
+}
+
+.titre {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 18pt;
+	color: #000080;
+	font-weight: bold
+}
