@@ -4,21 +4,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class FactureModel {
+	
+	
+
 	@Id
 	@GeneratedValue
 	private long id = -1;
-	// private String panier;
+
+//	private String panier;
+
 	// montant de la caisse
 	private double montant;
-	private String Nomclient;
+	private  String Nomclient;
 	private double tva;
 	private double prixht;
+	
 
 	public String getNomclient() {
 		return Nomclient;
@@ -29,10 +36,14 @@ public class FactureModel {
 	}
 
 	// moyen de paiement
+	
 	private String moyen;
-	private ArrayList<Integer> quantite = new ArrayList<Integer>();
+	private ArrayList<Integer> quantite=new ArrayList<Integer>();
 	private ArrayList<String> mesproduits = new ArrayList<String>();
-	private ArrayList<String> prod = new ArrayList<String>();
+	private ArrayList<String> prod=new ArrayList<String>();
+	private ArrayList<Double> prixUnitaire=new ArrayList<Double>();
+	
+	
 
 	public ArrayList<String> getMesproduits() {
 		return mesproduits;
@@ -43,10 +54,12 @@ public class FactureModel {
 	}
 
 	public void maliste(String prod) {
+
 		ArrayList<String> mesprod = new ArrayList<String>();
 		StringTokenizer st = new StringTokenizer(prod, "*");
 		String str = st.nextToken();
 		mesprod.add(str);
+
 	}
 
 	public long getId() {
@@ -104,11 +117,26 @@ public class FactureModel {
 	public void setPrixht(double prixht) {
 		this.prixht = prixht;
 	}
-	// public String getPanier() {
-	// return panier;
-	// }
-	//
-	// public void setPanier(String panier) {
-	// this.panier = panier;
-	// }
+
+	public ArrayList<Double> getPrixUnitaire() {
+		return prixUnitaire;
+	}
+
+	public void setPrixUnitaire(ArrayList<Double> prixUnitaire) {
+		this.prixUnitaire = prixUnitaire;
+	}
+	
+	
+	
+
+	
+
+//	public String getPanier() {
+//		return panier;
+//	}
+//
+//	public void setPanier(String panier) {
+//		this.panier = panier;
+//	}
+
 }

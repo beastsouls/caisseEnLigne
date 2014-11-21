@@ -1,11 +1,12 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" />
 <title>Document sans nom</title>
+
 <style>
+
 .auto-style6 {
 border-left: 1px solid #C0C0C0;
 border-right-style: solid;
@@ -104,49 +105,53 @@ text-align: right;
 }
 </style>
 </head>
+
 <body>
-<table style="width: 70%; height: 750px;" class="auto-style19" align="left" th:each="fact :${factures}"> <tr> <td colspan="5" style="height: 248px" >
-<table style="width: 100%" class="auto-style19"> <tr> <td class="auto-style1" style="height: 75px; width: 30%;">[LOGO 100 * 200]</td>
-<td class="auto-style1" colspan="4" style="height: 75px; width: 70%;">FACTURE</td> </tr>
-<tr> <td class="auto-style13" style="width: 30%">[Particulier]</td>
-<td class="auto-style15" style="width: 15%" rowspan="2">N° de Facture</td>
-<td class="auto-style15" style="width: 15%" rowspan="2">DATE</td>
-<!-- <td class="auto-style15" style="width: 15%" rowspan="2">Nom Client</td> -->
+<table style="width: 70%; height: 750px;" class="auto-style19" align="left" th:each="fact :${factures}"> <tr> <td colspan="5" style="height: 248px" > 
+<table style="width: 100%" class="auto-style19"> <tr> <td class="auto-style1" style="height: 75px; width: 30%;">[LOGO 100 * 200]</td> 
+<td class="auto-style1" colspan="4" style="height: 75px; width: 70%;">FACTURE</td> </tr> 
+<tr> <td class="auto-style13" style="width: 30%">[Particulier]</td> 
+<td class="auto-style15" style="width: 15%" rowspan="2">N° de Facture</td> 
+<td class="auto-style15" style="width: 15%" rowspan="2">DATE</td> 
+<!-- <td class="auto-style15" style="width: 15%" rowspan="2">Nom Client</td>  -->
 <td class="auto-style15" style="width: 25%" rowspan="2">Client</td> </tr>
-<tr> <td class="auto-style13" style="width: 30%">[ France]</td> </tr>
-<tr> <td class="auto-style22" style="width: 30%; height: 44px;"> </td>
-<td class="auto-style21" style="width: 15%; height: 44px;"><span th:text="${fact.id}"></span> </td>
-<td class="auto-style21" style="width: 15%; height: 44px;">[Date]</td>
-<!-- <td class="auto-style21" style="width: 15%; height: 44px;">#[#Client]</td> -->
-<td class="auto-style21" style="width: 25%; height: 44px;"><span th:text="${fact.Nomclient}"></span><br /> </td>
-</tr> </table> </td> </tr> <tr> <td colspan="5" > </td> </tr> <tr> <td class="auto-style15" style="width: 10%">Code</td>
-<td class="auto-style15" style="width: 50%">Description</td> <td class="auto-style15" style="width: 10%">Quantité</td>
-<td class="auto-style15" style="width: 10%">PU / $ HT</td> <td class="auto-style15" style="width: 20%">Montant / $ HT</td> </tr>
-<tr> <td class="auto-style21" style="height: 50px; width: 10%;"><span th:text="${fact.id}"></span></td> <td class="auto-style21" style="height: 50px; width: 50%;"><span th:text="${fact.prod}"></span></td>
-<td class="auto-style21" style="height: 50px; width: 10%;"><span th:text="${fact.quantite}"></span></td>
-<td class="auto-style21" style="height: 50px">[Prix unité]</td>
-<td class="auto-style21" style="height: 50px; width: 20%;"><span th:text="${fact.prixht}"></span></td>
-</tr>
-<tr> <td class="auto-style6" style="height: 50px; width: 10%;"></td>
-<td class="auto-style6" style="height: 50px; width: 50%;"></td>
-<td class="auto-style6" style="height: 50px; width: 10%;"></td>
-<td class="auto-style6" style="height: 50px"></td>
-<td class="auto-style6" style="height: 50px; width: 20%;"></td>
-</tr>
-<tr> <td class="auto-style6" style="height: 50px; width: 10%;"></td>
-<td class="auto-style6" style="height: 50px; width: 50%;"></td>
-<td class="auto-style6" style="height: 50px; width: 10%;"></td>
-<td class="auto-style6" style="height: 50px"></td>
-<td class="auto-style6" style="height: 50px; width: 20%;"></td>
-</tr> <tr> <td class="auto-style6" colspan="2" rowspan="6"> </td>
+ <tr> <td class="auto-style13" style="width: 30%">[ France]</td> </tr>
+ <tr> <td class="auto-style22" style="width: 30%; height: 44px;"> </td> 
+ <td class="auto-style21" style="width: 15%; height: 44px;"><span th:text="${fact.id}"></span> </td> 
+ <td class="auto-style21" style="width: 15%; height: 44px;">[Date]</td> 
+<!--  <td class="auto-style21" style="width: 15%; height: 44px;">#[#Client]</td>  -->
+ <td class="auto-style21" style="width: 25%; height: 44px;"><span th:text="${fact.Nomclient}"></span><br /> </td>
+ </tr> </table> </td> </tr> <tr> <td colspan="5" > </td> </tr> <tr> <td class="auto-style15" style="width: 10%">Code</td>
+ <td class="auto-style15" style="width: 50%">Description</td> <td class="auto-style15" style="width: 10%">Quantité</td> 
+ <td class="auto-style15" style="width: 10%">PU / $ HT</td> <td class="auto-style15" style="width: 20%">Montant / $ HT</td> </tr>
+ 
+ <tr> <td class="auto-style21" style="height: 50px; width: 10%;"><span th:text="${fact.id}"></span></td> <td class="auto-style21" style="height: 50px; width: 50%;"><span th:text="${fact.prod}"></span></td>
+ <td class="auto-style21" style="height: 50px; width: 10%;"><span th:text="${fact.quantite}"></span></td>
+ <td class="auto-style21" style="height: 50px"><span th:text="${fact.prixUnitaire}"></span></td> 
+ <td class="auto-style21" style="height: 50px; width: 20%;"><span th:text="${fact.prixht}"></span></td> 
+ </tr> 
+ <tr> <td class="auto-style6" style="height: 50px; width: 10%;"></td>
+ <td class="auto-style6" style="height: 50px; width: 50%;"></td> 
+ <td class="auto-style6" style="height: 50px; width: 10%;"></td>
+ <td class="auto-style6" style="height: 50px"></td> 
+ <td class="auto-style6" style="height: 50px; width: 20%;"></td> 
+ </tr> 
+ <tr> <td class="auto-style6" style="height: 50px; width: 10%;"></td>
+ <td class="auto-style6" style="height: 50px; width: 50%;"></td> 
+ <td class="auto-style6" style="height: 50px; width: 10%;"></td> 
+ <td class="auto-style6" style="height: 50px"></td>
+ <td class="auto-style6" style="height: 50px; width: 20%;"></td> 
+</tr> <tr> <td class="auto-style6" colspan="2" rowspan="5"> </td> 
 <td class="auto-style18" colspan="2">Sous-Total</td>
-<td class="auto-style23">[Quantité * Prix unité]</td> </tr>
-<tr> <td class="auto-style18" colspan="2">Taxe de Vente Provinciale</td>
-<td class="auto-style23">[20% du sous-total]</td>
-</tr>
-<td class="auto-style23">[Prix du transport]</td> </tr> <tr> <td class="auto-style18" colspan="2"/>Frais de Douane</td>
-<tr> <td class="auto-style15" colspan="2"><span th:text="${fact.montant}"></span></td>
-</tr>
-</table>
+ <td class="auto-style23"><span th:text="${fact.prixht}"></span></td> </tr> 
+ <tr> <td class="auto-style18" colspan="2">TVA=20%</td> 
+ <td class="auto-style23"><span th:text="${fact.tva}"></span></td> 
+ </tr>
+ <tr> <td class="auto-style15" colspan="2">Net à Payer</td> 
+ <td class="auto-style17"><span th:text="${fact.montant}"></span></td> 
+ </tr> <tr> <td class="auto-style6" colspan="2" rowspan="2"><em>Les conditions de vente sont déterminées dans le contrat général de vente de l'entreprise. </em></td> 
+ <td colspan="3"> </td> </tr> 
+ </table>
+
 </body>
 </html>
