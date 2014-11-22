@@ -112,17 +112,29 @@ package projet.chart;
 ********** critiques constructives à faire, merci de me les envoyer à ********
 *****************     i.gautier@wanadoo.fr      ******************************
 */
+import java.awt.Color;
+import java.awt.GradientPaint;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.cfg.annotations.reflection.XMLContext.Default;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
+import org.jfree.data.xy.DefaultXYDataset;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
 import org.jfree.util.Rotation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -133,6 +145,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/charts")
 public class chart {
 
+	private XYSeries series1 = new XYSeries("Planned");
+	private XYSeries series2 = new XYSeries("Delivered");
+	private XYSeries series3 = new XYSeries("Third");
+	
+	//http://www.massapi.com/class/de/DefaultXYDataset.html
+	
+	
 	@RequestMapping(value="/piechart", method = RequestMethod.GET)
 	public void DrawPieChart(HttpServletResponse reponse)
 	{
@@ -171,11 +190,89 @@ public class chart {
 		return dpd;
 	}
 	
+	/* histo */
+	
+
+	
+	
+	@RequestMapping(value="/piechart2", method = RequestMethod.GET)
+	public void DrawChart(HttpServletResponse reponse)
+	{
+
+		// create a dataset...
+		
+		series1.add(1.0, 1.0);
+		series1.add(2.0, 4.0);
+		series1.add(3.0, -3.0);
+		series1.add(4.0, 5.0);
+		series1.add(5.0, 5.0);
+		series1.add(6.0, 7.0);
+		series1.add(7.0, 7.0);
+		series1.add(8.0, 8.0);
+
+		
+		series2.add(1.0, 5.0);
+		series2.add(2.0, 7.0);
+		series2.add(3.0, 6.0);
+		series2.add(4.0, 8.0);
+		series2.add(5.0, -4.0);
+		series2.add(6.0, 4.0);
+		series2.add(7.0, 2.0);
+		series2.add(8.0, 1.0);
+
+		
+		series3.add(3.0, 4.0);
+		series3.add(4.0, 3.0);
+		series3.add(5.0, 2.0);
+		series3.add(6.0, -3.0);
+		series3.add(7.0, 6.0);
+		series3.add(8.0, 3.0);
+		series3.add(9.0, -4.0);
+		series3.add(10.0, 3.0);
+		
+	
+		
+		reponse.setContentType("image/png");
+		XYDataset pdSet = (XYDataset) createDataSet2();
+		
+		JFreeChart chart = createChart2(pdSet,"My histo Chart");
+		
+		try{
+			ChartUtilities.writeChartAsPNG(reponse.getOutputStream(),chart,750,400);
+			reponse.getOutputStream().close();
+		}
+		catch(IOException ex)
+		{
+			ex.printStackTrace();
+		}
+		
+	}
+	
+	private JFreeChart createChart2(XYDataset pdSet, String string) {
+	
+		
+		JFreeChart chart = ChartFactory.createXYLineChart("TestChart", "X", "Y", pdSet, PlotOrientation.VERTICAL, false, false, false);
+		XYPlot plot = (XYPlot) chart.getPlot();
+						
+		return chart;
+	}
+	
+	
+	private DefaultXYDataset createDataSet2() {
+		DefaultXYDataset dpd = new DefaultXYDataset();
+		dpd.addSeries("Planned", series1.toArray());
+		dpd.addSeries("Delivered", series2.toArray());
+		dpd.addSeries("Third", series3.toArray());
+		return dpd;
+	}
+	
 	@RequestMapping(value="/piechart1", method = RequestMethod.GET)
 	public String  chart()
 	{
 		return "chart";
 	}
+	
+	
 } // fin
 
 
