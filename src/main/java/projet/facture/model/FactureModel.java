@@ -1,5 +1,6 @@
 package projet.facture.model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +26,7 @@ public class FactureModel {
 	private  String Nomclient;
 	private double tva;
 	private double prixht;
+	private String dateAchat;
 	
 
 	public String getNomclient() {
@@ -124,6 +126,14 @@ public class FactureModel {
 
 	public void setPrixUnitaire(ArrayList<Double> prixUnitaire) {
 		this.prixUnitaire = prixUnitaire;
+	}
+
+	public String getDateAchat() {
+		return dateAchat;
+	}
+
+	public void setDateAchat(String dateAchat) {
+		this.dateAchat = dateAchat;
 	}
 	
 	

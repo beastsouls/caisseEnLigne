@@ -1,5 +1,7 @@
 package projet.caisse.controller;
 
+import java.text.DateFormat;
+import java.text.Format;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+
 
 
 
@@ -226,7 +230,8 @@ public class Controlleur {
 		int i = 1;
 		double montant = 0;
 		String liste = "";
-		
+		 DateFormat df=DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM);
+		String date=df.format(new Date());
 		ArrayList<String> FactTotal = new ArrayList<String>();
 		ArrayList<Integer> qtite=new ArrayList<Integer>();
 		ArrayList<String> prod=new ArrayList<String>();
@@ -246,7 +251,7 @@ public class Controlleur {
 			FactTotal.add(liste);
 			
 			montant = montant + panierListe.get(key).getSomme();
-		
+			System.out.println("date achat "+date);
 			
 
 			}
@@ -262,6 +267,7 @@ public class Controlleur {
 		lafacture.setTva(tva);
 		lafacture.setPrixht(prixht);
 		lafacture.setPrixUnitaire(pu);
+		lafacture.setDateAchat(date);
 		System.out.println("prix unitaire "+pu.toString());
 		lafacture.setMontant(montant * 1.20);
 		factureRepository.save(lafacture);

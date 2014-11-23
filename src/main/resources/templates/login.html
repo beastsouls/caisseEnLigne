@@ -47,6 +47,10 @@ body {
 	height:300px;
 }
 
+.strong {
+color:red;
+	}
+
 
 .login h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
 
@@ -78,20 +82,24 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 </style>
     </head>
     <body>
-        <div th:if="${param.error}">
-            Invalid username and password.
-        </div>
+        
         <div th:if="${param.logout}">
-            You have been logged out.
+           Vous avez été deconnecté
         </div>
         <div class="login">
         <form th:action="@{/login}" method="post">
         	<h1 style="color:white;">Identifiez-vous</h1>
-            <div><label style="color: white;"> User Name : <input type="text" name="username" class="input_form"/> </label></div>
-            <div><label style="color: white;"> Password: <input type="password" name="password" class="input_form"/> </label></div>
+            <div><label style="color: white;"> Nom utilisateur : <input type="text" name="username" class="input_form"/> </label></div>
+            <div><label style="color: white;"> Mot de passe: <input type="password" name="password" class="input_form"/> </label></div>
             <div><input type="submit" value="Connexion" class="btn btn-primary btn-block btn-large"/></div>
-        </form>
+       <div th:if="${param.error}">
+       <br/>
+          <strong> nom utilisateur ou mot de passe incorrect</strong> 
         </div>
+        </form>
+        
+        </div>
+        
     </body>
 </html>
 
