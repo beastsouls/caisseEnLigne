@@ -1,8 +1,8 @@
 package projet.caisse.controller;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,10 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-
-
-
 
 import projet.CodePromo.model.CodePromo;
 import projet.CodePromo.repository.CodePromoRepository;
@@ -107,14 +103,14 @@ public class Controlleur {
 		panierListe = (Map<Long,ProduitQuantity>) session.getAttribute("panierListe");
 		ProduitQuantity prodQuantity = panierListe.get(id);
 		
-		System.out.println(" stock de " + prodQuantity.getElementPanier().getName() + "  =" + prodQuantity.getElementPanier().getStock());
+		//System.out.println(" stock de " + prodQuantity.getElementPanier().getName() + "  =" + prodQuantity.getElementPanier().getStock());
 		prodQuantity.getElementPanier().setStock(prodQuantity.getElementPanier().getStock() - qt);
-		System.out.println("nouveau stock de " + prodQuantity.getElementPanier().getName() + "  =" + prodQuantity.getElementPanier().getStock());
+		//System.out.println("nouveau stock de " + prodQuantity.getElementPanier().getName() + "  =" + prodQuantity.getElementPanier().getStock());
 		if(prodQuantity.getElementPanier().getStock()<0)
 		{
-			System.out.println("le stock est negatif ");
+			//System.out.println("le stock est negatif ");
 			prodQuantity.setQuantity(qt + prodQuantity.getElementPanier().getStock());
-			System.out.println("quantite donnee dans le panier " + prodQuantity.getQuantity());
+			//System.out.println("quantite donnee dans le panier " + prodQuantity.getQuantity());
 			
 		}
 		else
@@ -141,8 +137,8 @@ public class Controlleur {
 		total =total  + panierListe.get(prodQuantity.getElementPanier().getId()).getSomme();
 		prixht=total;
 		 tva=prixht*0.20;
-		System.out.println("prix ht "+prixht);
-		System.out.println("tva "+tva);
+		//System.out.println("prix ht "+prixht);
+		//System.out.println("tva "+tva);
 		//prodQuantity.setSommeTotalFacture(total);
 		session.setAttribute("total", total);
 		
@@ -227,6 +223,8 @@ public class Controlleur {
 		double montant = 0;
 		String liste = "";
 		
+		DateFormat df=DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM);
+	    String date=df.format(new Date());
 		ArrayList<String> FactTotal = new ArrayList<String>();
 		ArrayList<Integer> qtite=new ArrayList<Integer>();
 		ArrayList<String> prod=new ArrayList<String>();
@@ -246,14 +244,15 @@ public class Controlleur {
 			FactTotal.add(liste);
 			
 			montant = montant + panierListe.get(key).getSomme();
+			//System.out.println("date achat "+date);
 		
 			
 
 			}
-		for(int j=0;j<prod.size();j++)
-		{
-			System.out.println("produit:"+prod.get(j)+" quantite "+qtite.get(j));
-		}
+//		for(int j=0;j<prod.size();j++)
+//		{
+//			System.out.println("produit:"+prod.get(j)+" quantite "+qtite.get(j));
+//		}
 		lafacture.setMesproduits(FactTotal);
 		lafacture.setProd(prod);
 		lafacture.setQuantite(qtite);
@@ -262,16 +261,17 @@ public class Controlleur {
 		lafacture.setTva(tva);
 		lafacture.setPrixht(prixht);
 		lafacture.setPrixUnitaire(pu);
-		System.out.println("prix unitaire "+pu.toString());
+		lafacture.setDateAchat(date);
+		//System.out.println("prix unitaire "+pu.toString());
 		lafacture.setMontant(montant * 1.20);
 		factureRepository.save(lafacture);
 		model.addAttribute("factur", factureRepository.findAll());
 		
 		Client c = clientRepository.findByName(nom);
-		System.out.println("le client est " + c.getName());
-		System.out.println("\n la somme actuelle du client est " + c.getSommePayer());
+//		System.out.println("le client est " + c.getName());
+//		System.out.println("\n la somme actuelle du client est " + c.getSommePayer());
 		c.setSommePayer(c.getSommePayer() + (montant * 1.20));
-		System.out.println("\n la somme modifier du client est " + c.getSommePayer());
+		//System.out.println("\n la somme modifier du client est " + c.getSommePayer());
 		clientRepository.save(c);
 
 		
@@ -283,12 +283,12 @@ public class Controlleur {
 	
 	@RequestMapping(value = "/imprime", method = RequestMethod.GET)
 	public String editFacture(@RequestParam("id") Long id, Model model) {
-		System.out.println(factureRepository.findOne(id).getId());
-		System.out.println(factureRepository.findOne(id).getNomclient().toString());
-		System.out.println(factureRepository.findOne(id).getMontant());
-		System.out.println(factureRepository.findOne(id).getMoyen().toString());
-		System.out.println(factureRepository.findOne(id).getMesproduits().toString());
-		
+//		System.out.println(factureRepository.findOne(id).getId());
+//		System.out.println(factureRepository.findOne(id).getNomclient().toString());
+//		System.out.println(factureRepository.findOne(id).getMontant());
+//		System.out.println(factureRepository.findOne(id).getMoyen().toString());
+//		System.out.println(factureRepository.findOne(id).getMesproduits().toString());
+//		
 		model.addAttribute("identifiant",factureRepository.findOne(id).getId());
 		model.addAttribute("description",factureRepository.findOne(id).getMesproduits().contains(id));
 		model.addAttribute("factures", factureRepository.findOne(id));

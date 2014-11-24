@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" />
-<title>Document sans nom</title>
+<title>Etat facture</title>
 
 <style>
 
@@ -107,9 +107,9 @@ text-align: right;
 </head>
 
 <body>
-<table style="width: 70%; height: 750px;" class="auto-style19" align="left" th:each="fact :${factures}"> <tr> <td colspan="5" style="height: 248px" > 
-<table style="width: 100%" class="auto-style19"> <tr> <td class="auto-style1" style="height: 75px; width: 30%;">[LOGO 100 * 200]</td> 
-<td class="auto-style1" colspan="4" style="height: 75px; width: 70%;">FACTURE</td> </tr> 
+<table style="width: 50%; height: 600px;" class="auto-style19" align="left" th:each="fact :${factures}"> <tr> <td colspan="5" style="height: 248px" >
+<table style="width: 100%" class="auto-style19"> <tr> <td class="auto-style1" style="height: 75px; width: 30%;"><img src="../images/shared/logo.png" width="100"
+ height="50"/> </td> <td class="auto-style1" colspan="4" style="height: 75px; width: 70%;">FACTURE</td> </tr> 
 <tr> <td class="auto-style13" style="width: 30%">[Particulier]</td> 
 <td class="auto-style15" style="width: 15%" rowspan="2">N° de Facture</td> 
 <td class="auto-style15" style="width: 15%" rowspan="2">DATE</td> 
@@ -118,12 +118,12 @@ text-align: right;
  <tr> <td class="auto-style13" style="width: 30%">[ France]</td> </tr>
  <tr> <td class="auto-style22" style="width: 30%; height: 44px;"> </td> 
  <td class="auto-style21" style="width: 15%; height: 44px;"><span th:text="${fact.id}"></span> </td> 
- <td class="auto-style21" style="width: 15%; height: 44px;">[Date]</td> 
+<td class="auto-style21" style="width: 15%; height: 44px;"><span th:text="${fact.dateAchat}"></span></td> 
 <!--  <td class="auto-style21" style="width: 15%; height: 44px;">#[#Client]</td>  -->
  <td class="auto-style21" style="width: 25%; height: 44px;"><span th:text="${fact.Nomclient}"></span><br /> </td>
  </tr> </table> </td> </tr> <tr> <td colspan="5" > </td> </tr> <tr> <td class="auto-style15" style="width: 10%">Code</td>
  <td class="auto-style15" style="width: 50%">Description</td> <td class="auto-style15" style="width: 10%">Quantité</td> 
- <td class="auto-style15" style="width: 10%">PU / $ HT</td> <td class="auto-style15" style="width: 20%">Montant / $ HT</td> </tr>
+ <td class="auto-style15" style="width: 10%">PU / € HT</td> <td class="auto-style15" style="width: 20%">Montant / € HT</td> </tr>
  
  <tr> <td class="auto-style21" style="height: 50px; width: 10%;"><span th:text="${fact.id}"></span></td> <td class="auto-style21" style="height: 50px; width: 50%;"><span th:text="${fact.prod}"></span></td>
  <td class="auto-style21" style="height: 50px; width: 10%;"><span th:text="${fact.quantite}"></span></td>
@@ -149,8 +149,15 @@ text-align: right;
  </tr>
  <tr> <td class="auto-style15" colspan="2">Net à Payer</td> 
  <td class="auto-style17"><span th:text="${fact.montant}"></span></td> 
- </tr> <tr> <td class="auto-style6" colspan="2" rowspan="2"><em>Les conditions de vente sont déterminées dans le contrat général de vente de l'entreprise. </em></td> 
+ </tr> <tr> <td class="auto-style6" colspan="2" rowspan="2"><em>le contrat général de vente de notre entreprise. </em></td> 
  <td colspan="3"> </td> </tr> 
+ <tr>
+ <td colspan="3"></td>
+ <td><input type="submit" value="imprimer" /></td>
+ <form th:action="@{/RetourFacture}" method="post" style="width: auto;">
+ <td><input type="submit" value="retour caisse"/> </td>
+ </form>
+ </tr>
  </table>
 
 </body>

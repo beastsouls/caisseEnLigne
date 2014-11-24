@@ -25,7 +25,16 @@ public class FactureModel {
 	private  String Nomclient;
 	private double tva;
 	private double prixht;
+	private String dateAchat;
 	
+
+	public String getDateAchat() {
+		return dateAchat;
+	}
+
+	public void setDateAchat(String dateAchat) {
+		this.dateAchat = dateAchat;
+	}
 
 	public String getNomclient() {
 		return Nomclient;
