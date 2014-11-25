@@ -1,6 +1,7 @@
 package projet.caisse.controller;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -35,9 +36,10 @@ public class Controlleur {
 	
 	private Map<Long,ProduitQuantity> panierListe;
 	private double total=0;
-	private int message = -1;
+	private int message = 2;
 	private Map<Long , ProduitQuantity> facture;
 	private double prixht=0;
+	private double totale = 0;
 	double tva;
 	
 	@Autowired
@@ -102,38 +104,51 @@ public class Controlleur {
 		//System.out.println(id);
 		panierListe = (Map<Long,ProduitQuantity>) session.getAttribute("panierListe");
 		ProduitQuantity prodQuantity = panierListe.get(id);
-		
+		int stock = prodQuantity.getElementPanier().getStock();
+		int messtock =0;
 		//System.out.println(" stock de " + prodQuantity.getElementPanier().getName() + "  =" + prodQuantity.getElementPanier().getStock());
 		prodQuantity.getElementPanier().setStock(prodQuantity.getElementPanier().getStock() - qt);
 		//System.out.println("nouveau stock de " + prodQuantity.getElementPanier().getName() + "  =" + prodQuantity.getElementPanier().getStock());
 		if(prodQuantity.getElementPanier().getStock()<0)
 		{
 			//System.out.println("le stock est negatif ");
-			prodQuantity.setQuantity(qt + prodQuantity.getElementPanier().getStock());
+			prodQuantity.setQuantity(prodQuantity.getElementPanier().getStock());
+			messtock = 1; //"vous avez rentré un nombre de produits trop grand !!!";
+//			prodQuantity.setSomme(prodQuantity.getQuantity() * prodQuantity.getElementPanier().getPrix());
+//			produitRepository.save(prodQuantity.getElementPanier());
+//			
+//			
+//			total =total  + panierListe.get(prodQuantity.getElementPanier().getId()).getSomme();
+//			prixht=total;
+//			 tva=prixht*0.20;
+//			//System.out.println("prix ht "+prixht);
+//			//System.out.println("tva "+tva);
+//			//prodQuantity.setSommeTotalFacture(total);
+//			session.setAttribute("total", total);
+//			session.setAttribute("stock", messtock);
+//			
+//			
+//			session.setAttribute("panierListe", panierListe);
+//			return "redirect:/caisse";
+		
 			//System.out.println("quantite donnee dans le panier " + prodQuantity.getQuantity());
 			
 		}
 		else
 		{
-			if(prodQuantity.getElementPanier().getStock() == 0)
+			if(prodQuantity.getElementPanier().getStock() == 0){
 			prodQuantity.setQuantity(0);
+			messtock = 2;}
 			else
-				prodQuantity.setQuantity(qt);
+				{prodQuantity.setQuantity(qt); messtock=3;}
 		}
 		//prodQuantity.setQuantity(qt);
+		prodQuantity.setQuantity(stock);
+		messtock = 1; //"vous avez rentré un nombre de produits trop grand !!!";
 		prodQuantity.setSomme(prodQuantity.getQuantity() * prodQuantity.getElementPanier().getPrix());
 		produitRepository.save(prodQuantity.getElementPanier());
 		
-		//prodQuantity.setSommeTotalFacture(prodQuantity.getSommeTotalFacture() + prodQuantity.getSomme());
 		
-//		if(!panierListe.containsKey(prodQuantity.getElementPanier().getId())){
-//			total =total  + panierListe.get(prodQuantity.getElementPanier().getId()).getSomme();
-////			System.out.print("la somme s'eleve a " + total + "  apres le " + i + "e element \n");
-//		}
-//		else
-//		{
-//			total =total  - panierListe.get(prodQuantity.getElementPanier().getId()).getSomme();
-//		}
 		total =total  + panierListe.get(prodQuantity.getElementPanier().getId()).getSomme();
 		prixht=total;
 		 tva=prixht*0.20;
@@ -141,6 +156,7 @@ public class Controlleur {
 		//System.out.println("tva "+tva);
 		//prodQuantity.setSommeTotalFacture(total);
 		session.setAttribute("total", total);
+		session.setAttribute("stock", messtock);
 		
 		
 		session.setAttribute("panierListe", panierListe);
@@ -153,6 +169,7 @@ public class Controlleur {
 		panierListe = (Map<Long,ProduitQuantity>) session.getAttribute("panierListe");
 		panierListe = new LinkedHashMap<Long,ProduitQuantity>();
 		total=0;
+		totale=0;
 		session.setAttribute("panierListe", panierListe);
 		session.setAttribute("total", total);
 		return "redirect:/caisse";
@@ -173,25 +190,38 @@ public class Controlleur {
 //		}
 //		
 	
-		double totale=0;
+		totale=total;
 		Date date = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.format(date);
+        
 		CodePromo c = CPrepository.findByCode(code);
 				
-		if(c != null && c.getId()>0)
+		if(c != null && c.getId() > 0 )
 		{
 			if(date.compareTo(c.getDebut())>=0 && date.compareTo(c.getFin())<=0)
 			{
-				totale = (total*1.20) - c.getMontant();
+				//totale = (total*1.20) - c.getMontant();
 				message=1;
-				total = totale;
+				//total = totale;
 			}
 			else 
 			{ 
-				totale = total ; 
+				//totale = total ; 
 				message = 0; 
 			}
 		}
 		
+		if(message == 1)
+		{
+			totale = (total*1.20) - c.getMontant();
+			//total = totale;
+		}
+		else if(message == 0)
+		{
+			totale = total*1.20 ;
+		}
+		else {totale = total*1.20 ;}
 		
 		session.setAttribute("message", message);
 		session.setAttribute("totale", totale);

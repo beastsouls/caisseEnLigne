@@ -274,8 +274,8 @@
 			<tr th:each="codePromo : ${codePromos}">
 				<td><span th:text="${codePromo.code}"></span></td>
 				<td><span th:text="${codePromo.montant}"></span></td>
-				<td><span th:text="${codePromo.debut}"></span></td> 
-				<td><span th:text="${codePromo.fin}"></span></td> 
+				<td><span th:text="${codePromo.getDebutFormat()}"></span></td> 
+				<td><span th:text="${codePromo.getFinFormat()}"></span></td> 
 <!-- 				<td><span th:text="${client.role}"></span></td> -->
 				<td><span><a th:href="@{/edit/codePromo(id=${codePromo.id})}">Editer</a></span></td>
 				<td><span><a th:href="@{/delete/codePromo(id=${codePromo.id})}">Supprimer</a></span></td>
