@@ -104,32 +104,10 @@
 
 			<!-- start logo -->
 			<div id="logo">
-				<a href=""><img src="../images/shared/logo.png" width="100"
+				<a href=""><img src="../images/shared/logo.png" width="90"
 					height="40" alt="" /></a>
 			</div>
-			<!-- end logo -->
-
-			<!--  start top-search -->
-			<div id="top-search">
-				<table border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td><input type="text" value="Search"
-							onblur="if (this.value=='') { this.value='Search'; }"
-							onfocus="if (this.value=='Search') { this.value=''; }"
-							class="top-search-inp" /></td>
-						<td><select class="styledselect">
-								<option value="">All</option>
-								<option value="">Products</option>
-								<option value="">Categories</option>
-								<option value="">Clients</option>
-								<option value="">News</option>
-						</select></td>
-						<td><input type="image"
-							src="../images/shared/top_search_btn.gif" /></td>
-					</tr>
-				</table>
-			</div>
-			<!--  end top-search -->
+			
 			<div class="clear"></div>
 
 		</div>
@@ -148,36 +126,19 @@
 			<!-- start nav-right -->
 			<div id="nav-right">
 
-				<div class="nav-divider">&nbsp;</div>
-				<div class="showhide-account">
-					<img src="../images/shared/nav/nav_myaccount.gif" width="93"
-						height="14" alt="" />
-				</div>
-				<div class="nav-divider">&nbsp;</div>
-				<a href="" id="logout"><img
-					src="../images/shared/nav/nav_logout.gif" width="64" height="14"
-					alt="" /></a>
+<!-- 				<div class="nav-divider">&nbsp;</div> -->
+<!-- 				<div class="showhide-account"> -->
+<!-- 					<img src="../images/shared/nav/nav_myaccount.gif" width="93" -->
+<!-- 						height="14" alt="" /> -->
+<!-- 				</div> -->
+<!-- 				<div class="nav-divider">&nbsp;</div> -->
+<!-- 				<a href="" id="logout"><img -->
+<!-- 					src="../images/shared/nav/nav_logout.gif" width="64" height="14" -->
+<!-- 					alt="" /></a> -->
 				<div class="clear">&nbsp;</div>
 
 				<!--  start account-content -->
-				<div class="account-content">
-					<div class="account-drop-inner">
-						<a href="" id="acc-settings">Settings</a>
-						<div class="clear">&nbsp;</div>
-						<div class="acc-line">&nbsp;</div>
-						<a href="" id="acc-details">Personal details </a>
-						<div class="clear">&nbsp;</div>
-						<div class="acc-line">&nbsp;</div>
-						<a href="" id="acc-project">Project details</a>
-						<div class="clear">&nbsp;</div>
-						<div class="acc-line">&nbsp;</div>
-						<a href="" id="acc-inbox">Inbox</a>
-						<div class="clear">&nbsp;</div>
-						<div class="acc-line">&nbsp;</div>
-						<a href="" id="acc-stats">Statistics</a>
-					</div>
-				</div>
-				<!--  end account-content -->
+				
 
 			</div>
 			<!-- end nav-right -->
@@ -186,69 +147,53 @@
 		<div class="nav">
 		<div class="table">
 		
-		<ul class="select"><li><a href="#nogo"><b>Tab bord</b><!--[if IE 7]><!--></a><!--<![endif]-->
+		<ul class="select"><li><a href="#nogo"><b>Tableau de bord</b><!--[if IE 7]><!--></a><!--<![endif]-->
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
 		<div class="select_sub">
 			<ul class="sub">
 				<li><a href="/charts/piechart1">Statistique 1</a></li>
 				<li><a href="#nogo">Statistique 2</a></li>
-				<li><a href="#nogo">Statistique 3</a></li>
+<!-- 				<li><a href="#nogo">Statistique 3</a></li> -->
 			</ul>
+			
 		</div>
 		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
 		</li>
-		</ul>
-		
-		<div class="nav-divider">&nbsp;</div>
-		                    
-		<ul class="select"><li><a href="/caisse"><b>Caisse</b><!--[if IE 7]><!--></a><!--<![endif]-->
-		<!--[if lte IE 6]><table><tr><td><![endif]-->
-		
-		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+			
+		<li><a href="/caisse"><b>Caisse</b><!--[if IE 7]><!--></a>
 		</li>
+		
 		</ul>
-		
-		<div class="nav-divider">&nbsp;</div>
-		
-		<ul class="select"><li><a href="/produit/"><b>Produit</b><!--[if IE 7]><!--></a><!--<![endif]-->
-		<!--[if lte IE 6]><table><tr><td><![endif]-->
-		<!--  <div class="select_sub">
-
-			<ul class="sub">
-				<li><a href="#nogo">Categories  1</a></li>
-				<li><a href="#nogo">Categories  2</a></li>
-				<li><a href="#nogo">Categories  3</a></li>
+			<ul class="select"><li><a href="/produit/"><b>Produit</b><!--[if IE 7]><!--></a><!--<![endif]-->
+		</li>
+			<li><a href="/facture/"><b>Facture</b> <!--[if IE 7]><!--></a></li>
+					
+					
 			</ul>
-		</div> --> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
-					</ul>
-
-					<div class="nav-divider">&nbsp;</div>
-					
-		                    
-					<ul class="select"><li><a href="/codePromo/"><b>Code promo</b><!--[if IE 7]><!--></a><!--<![endif]-->
-					<!--[if lte IE 6]><table><tr><td><![endif]-->
-					
-					<!--[if lte IE 6]></td></tr></table></a><![endif]-->
-					</li>
-					</ul>
-
-					<ul class="select">
-						<li><a href="/client/"><b>Client</b> <!--[if IE 7]><!--></a>
+			
+		
+		<ul class="select"><li><a href="/client/"><b>Client</b> <!--[if IE 7]><!--></a>
 							<!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]--> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+						
 						</li>
-					</ul>
+					
+					<li><a href="/employe/"><b>Personnel</b></a></li>
+						</ul>
+		
+<!-- 		<ul class="select"><li><a href="#nogo"><b>Facture</b> [if IE 7]><!</a></li>	</ul> -->
+		                    
+		
+<!-- 		<div class="nav-divider">&nbsp;</div> -->
+		
+	
 
-					<ul class="select">
-						<li><a href="#nogo"><b>Facture</b> <!--[if IE 7]><!--></a> <!--<![endif]-->
-							<!--[if lte IE 6]><table><tr><td><![endif]--> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
-						</li>
-					</ul>
+				
+					
+				
 
-					<div class="nav-divider">&nbsp;</div>
+<!-- 					<div class="nav-divider">&nbsp;</div> -->
 
-					<ul class="select">
-						<li><a href="/employe/"><b>Personnel</b></a></li>
-					</ul>
+					
 
 					<div class="clear"></div>
 				</div>
@@ -261,30 +206,28 @@
 		<!--  start nav-outer -->
 	</div>
 
-	<!-- <div class="corp_accueil">	
 	
-	
- <div class="menu">
-  Menu
- </div>
- </div>
- -->
+	<br/>
+   <center> <table border="50" cellspacing="10"  style="margin:20px;" >
+    
+    <tr> <td colspan="1"> <a href="/caisse/"><img src="../images/shared/caisse.jpg" alt="caisse" width="358" height="212"/></a></td> 
+    <td colspan="1"><a href="/produit/"><img src="../images/shared/imgf1.jpg" alt="produit" width="358" height="212"/></a></td>
+    <td colspan="1"><a href="/codePromo/"><img src="../images/shared/codepromo.png" alt="codepromo" width="358" height="212"/></a></td>
+    
+    </tr>
+  <tr> <td colspan="1"> <a href="/client/"><img src="../images/shared/client.jpg" alt="client" width="358" height="212"/></a></td>
+   <td colspan="1"><a href="/facture/"><img src="../images/shared/facture.jpg" alt="facture" width="358" height="212"/></a></td>
+    <td colspan="1"><a href="/employe/"><img src="../images/shared/employe.jpg" alt="employe" width="358" height="212"/></a></td>
+  
+  </tr>
+<!--     <tr><td height="682"><img src="../public/images/img3.png" /></td><td><img src="../public/images/img4.png"/></td> -->
+<!--     </tr> -->
+    
+    
+    
+    </table>
 
-
-
-	<div id="main">
-	Dans la div main
-		<div id="menu"></div>
-Dans la div Menu
-		<div id="contenu"> Dans la div contenu
-		<input type="button" th:each="produit : ${produits}" th:value="${produit.name}" />
-		
-		</div>
-	</div>
-
-
-
-<div id="page-heading"><h1>Caisse</h1></div>
+</center>
 
 
 <!-- start form here -->
@@ -294,12 +237,6 @@ Dans la div Menu
 
 
 
-<div class="clear">&nbsp;</div>
-
-
-<!--  end content -->
-<div class="clear">&nbsp;</div>
-<!--  end content-outer -->
 
  
 

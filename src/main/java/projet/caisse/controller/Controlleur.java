@@ -318,4 +318,12 @@ public class Controlleur {
 		session.setAttribute("total", total);
 		return "redirect:/caisse";
 	}
+	
+	@RequestMapping(value = "/facture/", method = RequestMethod.GET)
+	public String fact() {
+		return "facture";
+	}
+	
+		//System.out.println(id);
+	
 }
