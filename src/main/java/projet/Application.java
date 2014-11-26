@@ -1,6 +1,8 @@
 package projet;
 
-import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
 
 import javax.servlet.MultipartConfigElement;
 
@@ -10,13 +12,10 @@ import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-
-
-
-
-
 import org.springframework.context.annotation.Configuration;
 
+import projet.CodePromo.model.CodePromo;
+import projet.CodePromo.repository.CodePromoRepository;
 import projet.client.model.Client;
 import projet.client.repository.ClientRepository;
 import projet.produit.model.Produit;
@@ -35,10 +34,11 @@ public class Application {
         return factory.createMultipartConfig();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         ConfigurableApplicationContext context = SpringApplication.run(Application.class);
         produitRepository prepository = context.getBean(produitRepository.class);
         ClientRepository crepository = context.getBean(ClientRepository.class);
+        CodePromoRepository cprepository = context.getBean(CodePromoRepository.class);
         
         prepository.save(new Produit("Orange", "Nourriture", 10.0 , "orange" , 1000));
         prepository.save(new Produit("Pomme", "Nourriture", 10.0 , "orange" , 1000));
@@ -64,6 +64,14 @@ public class Application {
         crepository.save(new Client("boris","pdg", "test" , "n@gmail.com", "test"));
         crepository.save(new Client("lol","pdg", "test" , "n@gmail.com", "test"));
         crepository.save(new Client("test","pdg", "test" , "n@gmail.com", "test"));
+        
+        DateFormat date = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.MEDIUM);
+        
+        cprepository.save(new CodePromo(50, new Date("10/10/2014"), new Date("30/12/2014") , "AZERTYU")); //valide
+        cprepository.save(new CodePromo(150,new Date("10/10/2014"), new Date("10/11/2014") , "AZERTYP"));// invalid
+        cprepository.save(new CodePromo(40,new Date("10/01/2013"), new Date("10/12/2013") , "AZERTYM"));//invalide	
+        cprepository.save(new CodePromo(78,new Date("26/11/2014"), new Date("10/12/2014") , "AZERTYN"));//invalide
+        cprepository.save(new CodePromo(98,new Date("10/12/2014"), new Date("11/12/2014") , "AZERTYB"));// invalide
         
         
     }

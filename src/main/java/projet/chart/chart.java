@@ -1,4 +1,5 @@
 package projet.chart;
+
 //
 //
 //import java.applet.Applet;
@@ -100,107 +101,130 @@ package projet.chart;
 //	
 //}
 
-
-
 /* **************** Applet réalisée par Isabelle Gautier *********************
-******* téléchargeable sur le site http://i.gautier.free.fr/java/ ************
-******* protégée par la licence LLDL-v1, Licence de Libre Diffusion   ********
-*** à consulter sur :  http://pauillac.inria.fr/~lang/licence/v1/lldd.html ***
-******** Vous pouvez librement utiliser, modifier et diffuser ce document ****
-*****************  mais uniquement à titre gratuit. **************************
-*** C'est mon premier programme en java, si vous l'améliorez ou avez des *****
-********** critiques constructives à faire, merci de me les envoyer à ********
-*****************     i.gautier@wanadoo.fr      ******************************
-*/
-import java.awt.Color;
-import java.awt.GradientPaint;
+ ******* téléchargeable sur le site http://i.gautier.free.fr/java/ ************
+ ******* protégée par la licence LLDL-v1, Licence de Libre Diffusion   ********
+ *** à consulter sur :  http://pauillac.inria.fr/~lang/licence/v1/lldd.html ***
+ ******** Vous pouvez librement utiliser, modifier et diffuser ce document ****
+ *****************  mais uniquement à titre gratuit. **************************
+ *** C'est mon premier programme en java, si vous l'améliorez ou avez des *****
+ ********** critiques constructives à faire, merci de me les envoyer à ********
+ *****************     i.gautier@wanadoo.fr      ******************************
+ */
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.CategoryLabelPositions;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 import org.jfree.data.xy.DefaultXYDataset;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.util.Rotation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 // nécessaire pour transformer String en double
 
+import projet.client.model.Client;
+import projet.client.repository.ClientRepository;
+
 @Controller
 @RequestMapping("/charts")
 public class chart {
 
+	@Autowired
+	private ClientRepository clientRepository;
+	private ArrayList<Client> c = new ArrayList<Client>();
+
 	private XYSeries series1 = new XYSeries("Planned");
 	private XYSeries series2 = new XYSeries("Delivered");
 	private XYSeries series3 = new XYSeries("Third");
-	
-	//http://www.massapi.com/class/de/DefaultXYDataset.html
-	
-	
-	@RequestMapping(value="/piechart", method = RequestMethod.GET)
-	public void DrawPieChart(HttpServletResponse reponse)
-	{
+
+	// http://www.massapi.com/class/de/DefaultXYDataset.html
+
+	@RequestMapping(value = "/piechart", method = RequestMethod.GET)
+	public void DrawPieChart(HttpServletResponse reponse) {
 		reponse.setContentType("image/png");
 		PieDataset pdSet = createDataSet();
-		
-		JFreeChart chart = createChart(pdSet,"My Pie Chart");
-		
-		try{
-			ChartUtilities.writeChartAsPNG(reponse.getOutputStream(),chart,750,400);
+
+		JFreeChart chart = createChart(pdSet, "My Pie Chart");
+
+		try {
+			ChartUtilities.writeChartAsPNG(reponse.getOutputStream(), chart,
+					750, 400);
 			reponse.getOutputStream().close();
-		}
-		catch(IOException ex)
-		{
+		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-		
+
 	}
 
 	private JFreeChart createChart(PieDataset pdSet, String string) {
-		JFreeChart chart = ChartFactory.createPieChart3D(string, pdSet,true,true,false);
+		JFreeChart chart = ChartFactory.createPieChart3D(string, pdSet, true,
+				true, false);
 		PiePlot3D plot = (PiePlot3D) chart.getPlot();
 		plot.setStartAngle(290);
 		plot.setDirection(Rotation.CLOCKWISE);
 		plot.setForegroundAlpha(0.5f);
-				
+
 		return chart;
 	}
 
 	private PieDataset createDataSet() {
+
+		c = (ArrayList<Client>) clientRepository.findAll(); //tableau contenant otus les cients
+		ArrayList<Client> c2 = new ArrayList<Client>();// tableau qui va contenir les 5 plus gros depensier
+
+		int i;
+		int tmp = 0, tmp2 = 0;
+
+		for (int j = 0; j < 5; j++) {
+			double somme = 0;
+			for ( i = 0; i < c.size(); i++) {
+				System.out.println("client a l'index " + i + " est  " + c.get(i).getName() );
+				System.out.println("somme a l'index " + i + " est  " + c.get(i).getSommePayer() +"\n" );
+				if (somme < c.get(i).getSommePayer()) {
+					somme = c.get(i).getSommePayer();
+					tmp = i;
+				}
+				
+			}
+			c2.add(c.get(tmp));
+			c.remove(tmp);
+		}
+		
+
 		DefaultPieDataset dpd = new DefaultPieDataset();
-		dpd.setValue("Mac", 15);
-		dpd.setValue("Linux", 30);
-		dpd.setValue("Windows", 50);
-		dpd.setValue("Other", 55);
+//		dpd.setValue("Mac", 15);
+//		dpd.setValue("Linux", 30);
+//		dpd.setValue("Windows", 50);
+//		dpd.setValue("Other", 55);
+		for(int j = 0 ; j<c2.size() ; j ++)
+		{
+			System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH3  ");
+			dpd.setValue(c2.get(j).getName(), c2.get(j).getSommePayer());
+			System.out.println("client " + j + " : " + c2.get(j).getName() + " --> somme : " + c2.get(j).getSommePayer() +  "\n");
+			//System.out.println("le somme N° " + j + " dans le graphique vaut " + somme + " et le client est " + c.get(j).getName() +  "\n");
+		}
 		return dpd;
 	}
-	
-	/* histo */
-	
 
-	
-	
-	@RequestMapping(value="/piechart2", method = RequestMethod.GET)
-	public void DrawChart(HttpServletResponse reponse)
-	{
+	/* histo */
+
+	@RequestMapping(value = "/piechart2", method = RequestMethod.GET)
+	public void DrawChart(HttpServletResponse reponse) {
 
 		// create a dataset...
-		
+
 		series1.add(1.0, 1.0);
 		series1.add(2.0, 4.0);
 		series1.add(3.0, -3.0);
@@ -210,7 +234,6 @@ public class chart {
 		series1.add(7.0, 7.0);
 		series1.add(8.0, 8.0);
 
-		
 		series2.add(1.0, 5.0);
 		series2.add(2.0, 7.0);
 		series2.add(3.0, 6.0);
@@ -220,7 +243,6 @@ public class chart {
 		series2.add(7.0, 2.0);
 		series2.add(8.0, 1.0);
 
-		
 		series3.add(3.0, 4.0);
 		series3.add(4.0, 3.0);
 		series3.add(5.0, 2.0);
@@ -229,35 +251,31 @@ public class chart {
 		series3.add(8.0, 3.0);
 		series3.add(9.0, -4.0);
 		series3.add(10.0, 3.0);
-		
-	
-		
+
 		reponse.setContentType("image/png");
 		XYDataset pdSet = (XYDataset) createDataSet2();
-		
-		JFreeChart chart = createChart2(pdSet,"My histo Chart");
-		
-		try{
-			ChartUtilities.writeChartAsPNG(reponse.getOutputStream(),chart,750,400);
+
+		JFreeChart chart = createChart2(pdSet, "My histo Chart");
+
+		try {
+			ChartUtilities.writeChartAsPNG(reponse.getOutputStream(), chart,
+					750, 400);
 			reponse.getOutputStream().close();
-		}
-		catch(IOException ex)
-		{
+		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-		
+
 	}
-	
+
 	private JFreeChart createChart2(XYDataset pdSet, String string) {
-	
-		
-		JFreeChart chart = ChartFactory.createXYLineChart("TestChart", "X", "Y", pdSet, PlotOrientation.VERTICAL, false, false, false);
+
+		JFreeChart chart = ChartFactory.createXYLineChart("TestChart", "X",
+				"Y", pdSet, PlotOrientation.VERTICAL, false, false, false);
 		XYPlot plot = (XYPlot) chart.getPlot();
-						
+
 		return chart;
 	}
-	
-	
+
 	private DefaultXYDataset createDataSet2() {
 		DefaultXYDataset dpd = new DefaultXYDataset();
 		dpd.addSeries("Planned", series1.toArray());
@@ -265,14 +283,11 @@ public class chart {
 		dpd.addSeries("Third", series3.toArray());
 		return dpd;
 	}
-	
-	@RequestMapping(value="/piechart1", method = RequestMethod.GET)
-	public String  chart()
-	{
+
+	@RequestMapping(value = "/piechart1", method = RequestMethod.GET)
+	public String chart() {
 		return "chart";
 	}
-	
-	
-} // fin
 
+} // fin
 

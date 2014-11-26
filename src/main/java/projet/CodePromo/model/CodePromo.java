@@ -1,15 +1,15 @@
 package projet.CodePromo.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -71,6 +71,18 @@ public class CodePromo {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	public String getDebutFormat()
+	{
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.format(debut);
+	}
+	
+	public String getFinFormat()
+	{
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.format(fin);
+	}
 
 	@NotEmpty
 	@NotNull
@@ -78,6 +90,15 @@ public class CodePromo {
 	private String code;
 	
 	public  CodePromo() {}
+
+	public CodePromo(int montant, Date debut, Date fin, String code) throws ParseException {
+		super();
+		
+		this.montant = montant;
+		this.debut = debut;
+		this.fin =  fin;
+		this.code = code;
+	}
 
 	
 }

@@ -22,6 +22,7 @@ public class FactureModel {
 	private double montant;
 	private double montantTTC;
 	private double tva;
+	
 	private String moyen;
 	private String Nomclient;
 	private Date datecommande;
@@ -90,7 +91,6 @@ public class FactureModel {
 		this.listeprix.add(listeprix) ;
 	}
 
-	
 
 	public String getNomclient() {
 		return Nomclient;
