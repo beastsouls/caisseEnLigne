@@ -196,15 +196,21 @@
 				</thead>
 				<tbody>
 					<tr th:each="fact : ${factur}">
-                        <td><span th:text="${fact.id}"></span></td>
+                        <td ><span th:text="${fact.id}"></span></td>
                         <td><span th:text="${fact.Nomclient}"></span></td>
-<!-- 						<td><span th:text="${fact.mesproduits}"></span></td> -->
-						<td><span th:text="${fact.prod}"></span></td>
-						<td><span th:text="${fact.quantite}"></span></td>
-						<td><span th:text="${fact.montant}"></span></td>
-						<td><span th:text="${fact.moyen}"></span></td>
-<!-- 						<td><a href="/imprime" >visualiser</a></td> -->
-						<td><a th:href="@{/imprime(id=${fact.id})}"> visualiser</a></td>
+						<td >
+						<ul style="list-style-type:none">
+					    	<li th:each="pro : ${fact.listeproduis}" th:text="${pro}"></li>
+					    </ul>
+						</td>
+						<td >
+						<ul style="list-style-type:none">
+					    	<li th:each="pro : ${fact.listeqtt}" th:text="${pro}"></li>
+					    </ul>
+						</td>
+						<td ><span th:text="${fact.montantTTC}"></span></td>
+						<td ><span th:text="${fact.moyen}"></span></td>
+						<td ><span><a th:href="@{/imprime(id=${fact.id})}">Imprimer</a></span></td>
 
 					</tr>
 				</tbody>

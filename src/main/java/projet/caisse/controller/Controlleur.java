@@ -223,83 +223,40 @@ public class Controlleur {
 		return "redirect:/caisse";
 	}
 	@RequestMapping(value = "/paiement", method = RequestMethod.POST)
-	public String payerenespece(Model model, HttpSession session, @RequestParam("nom") String nom, @RequestParam("paye") String paye)
-			 {
-		panierListe = (Map<Long, ProduitQuantity>) session
-				.getAttribute("panierListe");
-		int i = 1;
+	public String payerenespece(Model model, HttpSession session, @RequestParam("nom") String nom, @RequestParam("paye") String paye) {
+		panierListe = (Map<Long, ProduitQuantity>) session.getAttribute("panierListe");
 		double montant = 0;
-		String liste = "";
-		 DateFormat df=DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM);
-		String date=df.format(new Date());
-		ArrayList<String> FactTotal = new ArrayList<String>();
-		ArrayList<Integer> qtite=new ArrayList<Integer>();
-		ArrayList<String> prod=new ArrayList<String>();
-		ArrayList<Double> pu=new ArrayList<Double>();
-		
+		ArrayList<String> fact = new ArrayList<String>();
 		FactureModel lafacture = new FactureModel();
-		
 		for (long key : panierListe.keySet()) {
-//		liste = panierListe.get(key).getElementPanier().getName()
-//					.toString()
-//				+ " * "					+ toString().valueOf(
-//							panierListe.get(key).getQuantity() );
-			qtite.add(panierListe.get(key).getQuantity());
-			prod.add(panierListe.get(key).getElementPanier().getName().toString());
-			pu.add(panierListe.get(key).getElementPanier().getPrix());
 			
-			FactTotal.add(liste);
-			
-			montant = montant + panierListe.get(key).getSomme();
-			System.out.println("date achat "+date);
-			
+		    lafacture.setListeproduis(panierListe.get(key).getElementPanier().getName().toString());
+		    lafacture.setListeqtt(toString().valueOf(panierListe.get(key).getQuantity()));
+		    lafacture.setListemontant(toString().valueOf(panierListe.get(key).getSomme()));
+		    lafacture.setListeprix(toString().valueOf(panierListe.get(key).getElementPanier().getPrix()));
+			lafacture.setListeid(panierListe.get(key).getElementPanier().getId());
+		    montant = montant + panierListe.get(key).getSomme();
 
-			}
-		for(int j=0;j<prod.size();j++)
-		{
-			System.out.println("produit:"+prod.get(j)+" quantite "+qtite.get(j));
 		}
-		lafacture.setMesproduits(FactTotal);
-		lafacture.setProd(prod);
-		lafacture.setQuantite(qtite);
 		lafacture.setMoyen(paye);
 		lafacture.setNomclient(nom);
-		lafacture.setTva(tva);
-		lafacture.setPrixht(prixht);
-		lafacture.setPrixUnitaire(pu);
-		lafacture.setDateAchat(date);
-		System.out.println("prix unitaire "+pu.toString());
-		lafacture.setMontant(montant * 1.20);
+		lafacture.setDatecommande(new Date());
+		
+		lafacture.setMontantTTC(montant * 1.20);
+		lafacture.setMontant(montant);
+		lafacture.setTva(montant*0.20);
+		
+		
 		factureRepository.save(lafacture);
 		model.addAttribute("factur", factureRepository.findAll());
-		
-		Client c = clientRepository.findByName(nom);
-		System.out.println("le client est " + c.getName());
-		System.out.println("\n la somme actuelle du client est " + c.getSommePayer());
-		c.setSommePayer(c.getSommePayer() + (montant * 1.20));
-		System.out.println("\n la somme modifier du client est " + c.getSommePayer());
-		clientRepository.save(c);
-
-		
-		
 		return "facture";
 	}
 	
-
-	
 	@RequestMapping(value = "/imprime", method = RequestMethod.GET)
-	public String editFacture(@RequestParam("id") Long id, Model model) {
-		System.out.println(factureRepository.findOne(id).getId());
-		System.out.println(factureRepository.findOne(id).getNomclient().toString());
-		System.out.println(factureRepository.findOne(id).getMontant());
-		System.out.println(factureRepository.findOne(id).getMoyen().toString());
-		System.out.println(factureRepository.findOne(id).getMesproduits().toString());
-		
-		model.addAttribute("identifiant",factureRepository.findOne(id).getId());
-		model.addAttribute("description",factureRepository.findOne(id).getMesproduits().contains(id));
-		model.addAttribute("factures", factureRepository.findOne(id));
+	public String payere(@RequestParam("id") Long id, Model model) {
+		model.addAttribute("facture", factureRepository.findOne(id));
+		model.addAttribute("produi", produitRepository.findOne(id));
 		return "imprimeFacture";
-		
 	}
 	
 	@RequestMapping(value = "/imprime", method = RequestMethod.POST)

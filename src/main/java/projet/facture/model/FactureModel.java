@@ -1,7 +1,8 @@
 package projet.facture.model;
 
-import java.sql.Date;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -12,21 +13,83 @@ import javax.persistence.Id;
 
 @Entity
 public class FactureModel {
-	
-	
 
 	@Id
 	@GeneratedValue
 	private long id = -1;
 
-//	private String panier;
-
-	// montant de la caisse
+	
 	private double montant;
-	private  String Nomclient;
+	private double montantTTC;
 	private double tva;
-	private double prixht;
-	private String dateAchat;
+	private String moyen;
+	private String Nomclient;
+	private Date datecommande;
+	
+
+	private ArrayList<String> mesproduits = new ArrayList<String>();
+	private ArrayList<String> listeproduis = new ArrayList<String>();
+	private ArrayList<String> listeqtt = new ArrayList<String>();
+	private ArrayList<String> listemontant = new ArrayList<String>();
+	private ArrayList<String> listeprix = new ArrayList<String>();
+	private ArrayList<Long> listeid = new ArrayList<Long>();
+	
+	public ArrayList<Long> getListeid() {
+		return listeid;
+	}
+
+	public void setListeid(Long listeid) {
+		this.listeid.add(listeid);
+	}
+
+	public double getMontantTTC() {
+		return montantTTC;
+	}
+
+	public void setMontantTTC(double montantTTC) {
+		this.montantTTC = montantTTC;
+	}
+
+	public Date getDatecommande() {
+		return datecommande;
+	}
+
+	public void setDatecommande(Date date) {
+		this.datecommande = date;
+	}
+
+	public ArrayList<String> getListeproduis() {
+		return listeproduis;
+	}
+
+	public void setListeproduis(String listeproduis) {
+		this.listeproduis.add(listeproduis);
+	}
+
+	public ArrayList<String> getListeqtt() {
+		return listeqtt;
+	}
+
+	public void setListeqtt(String listeqtt) {
+		this.listeqtt.add(listeqtt);
+	}
+
+	public ArrayList<String> getListemontant() {
+		return listemontant;
+	}
+
+	public void setListemontant(String listemontant) {
+		this.listemontant.add(listemontant);
+	}
+
+	public ArrayList<String> getListeprix() {
+		return listeprix;
+	}
+
+	public void setListeprix(String listeprix) {
+		this.listeprix.add(listeprix) ;
+	}
+
 	
 
 	public String getNomclient() {
@@ -38,14 +101,6 @@ public class FactureModel {
 	}
 
 	// moyen de paiement
-	
-	private String moyen;
-	private ArrayList<Integer> quantite=new ArrayList<Integer>();
-	private ArrayList<String> mesproduits = new ArrayList<String>();
-	private ArrayList<String> prod=new ArrayList<String>();
-	private ArrayList<Double> prixUnitaire=new ArrayList<Double>();
-	
-	
 
 	public ArrayList<String> getMesproduits() {
 		return mesproduits;
@@ -88,21 +143,7 @@ public class FactureModel {
 		this.moyen = moyen;
 	}
 
-	public ArrayList<Integer> getQuantite() {
-		return quantite;
-	}
-
-	public void setQuantite(ArrayList<Integer> quantite) {
-		this.quantite = quantite;
-	}
-
-	public ArrayList<String> getProd() {
-		return prod;
-	}
-
-	public void setProd(ArrayList<String> prod) {
-		this.prod = prod;
-	}
+	
 
 	public double getTva() {
 		return tva;
@@ -111,42 +152,5 @@ public class FactureModel {
 	public void setTva(double tva) {
 		this.tva = tva;
 	}
-
-	public double getPrixht() {
-		return prixht;
-	}
-
-	public void setPrixht(double prixht) {
-		this.prixht = prixht;
-	}
-
-	public ArrayList<Double> getPrixUnitaire() {
-		return prixUnitaire;
-	}
-
-	public void setPrixUnitaire(ArrayList<Double> prixUnitaire) {
-		this.prixUnitaire = prixUnitaire;
-	}
-
-	public String getDateAchat() {
-		return dateAchat;
-	}
-
-	public void setDateAchat(String dateAchat) {
-		this.dateAchat = dateAchat;
-	}
-	
-	
-	
-
-	
-
-//	public String getPanier() {
-//		return panier;
-//	}
-//
-//	public void setPanier(String panier) {
-//		this.panier = panier;
-//	}
 
 }
