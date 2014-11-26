@@ -263,7 +263,6 @@ public class Controlleur {
 		lafacture.setMontantTTC(montant * 1.20);
 		lafacture.setMontant(montant);
 		lafacture.setTva(montant*0.20);
-		lafacture.setMontant(montant * 1.20);
 		factureRepository.save(lafacture);
 		model.addAttribute("factur", factureRepository.findAll());
 		
