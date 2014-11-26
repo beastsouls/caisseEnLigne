@@ -229,32 +229,26 @@ public class Controlleur {
 	}
 	
 	
-	@RequestMapping(value = "/payespece", method = RequestMethod.POST)
-	public String payerenespece(Model model, HttpSession session) {
-		//System.out.println(id);
-		panierListe = (Map<Long,ProduitQuantity>) session.getAttribute("panierListe");
-		String liste="";
-		facture  = new LinkedHashMap<Long,ProduitQuantity>();
-		
-		for(long i =0 ; i< panierListe.size() ; i++)
-		{
-			facture.put(i, panierListe.get(i));
-			
-		}
-		
-		return "redirect:/caisse";
-	}
 	@RequestMapping(value = "/paiement", method = RequestMethod.POST)
 	public String payerenespece(Model model, HttpSession session, @RequestParam("nom") String nom, @RequestParam("paye") String paye) {
 		panierListe = (Map<Long, ProduitQuantity>) session.getAttribute("panierListe");
+		if (panierListe.size() == 0){
+			
+			return "redirect:/caisse";
+			}
 		double montant = 0;
 
 		ArrayList<String> fact = new ArrayList<String>();
 		String liste = "";
 		FactureModel lafacture = new FactureModel();
+		
 		for (long key : panierListe.keySet()) {
 			
-            lafacture.setListeproduis(panierListe.get(key).getElementPanier().getName().toString());
+			if ( panierListe.get(key).getSomme() ==0 ){
+				
+				return "redirect:/caisse";
+			}
+			lafacture.setListeproduis(panierListe.get(key).getElementPanier().getName().toString());
 		    lafacture.setListeqtt(toString().valueOf(panierListe.get(key).getQuantity()));
 		    lafacture.setListemontant(toString().valueOf(panierListe.get(key).getSomme()));
 		    lafacture.setListeprix(toString().valueOf(panierListe.get(key).getElementPanier().getPrix()));
@@ -269,14 +263,12 @@ public class Controlleur {
 		lafacture.setMontantTTC(montant * 1.20);
 		lafacture.setMontant(montant);
 		lafacture.setTva(montant*0.20);
-		
-		
-	//System.out.println("prix unitaire "+pu.toString());
 		lafacture.setMontant(montant * 1.20);
 		factureRepository.save(lafacture);
 		model.addAttribute("factur", factureRepository.findAll());
 		
-
+        panierListe.clear();
+        System.out.println(panierListe.size());
 		return "facture";
 	}
 	

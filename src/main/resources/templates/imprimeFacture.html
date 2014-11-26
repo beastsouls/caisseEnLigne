@@ -5,6 +5,15 @@
 <link rel="stylesheet" />
 <title>Etat facture</title>
 
+<script type="text/javascript">
+function initButtonImprimer() {
+  var bouton = document.getElementById('button-imprimer');
+  bouton.onclick = function(e) {
+    print();
+    return false;
+  }
+}
+</script>
 <style>
 .auto-style6 {
 	border-left: 1px solid #C0C0C0;
@@ -211,7 +220,8 @@
 		</tr>
 		<tr>
 			<td colspan="3"></td>
-			<td><input type="submit" value="imprimer" /></td>
+			<td>
+			<input type="submit"  value="imprimer"  onClick="window.print()" /></td>
 			<form th:action="@{/RetourFacture}" method="post"
 				style="width: auto;">
 				<td><input type="submit" value="retour caisse" /></td>
