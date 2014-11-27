@@ -65,6 +65,44 @@ public class Controlleur {
 		model.addAttribute("clients", clientRepository.findAll());
 		model.addAttribute("codePromos", CPrepository.findAll());
 		model.addAttribute("product", new Produit());
+		
+		List<Produit> produitsBoisson = new ArrayList<Produit>();
+		for(Produit p : produitRepository.findAll()){
+			if(p.getTypeproduit().compareToIgnoreCase("Boisson") == 0)
+				produitsBoisson.add(p);
+		}
+		model.addAttribute("produitsBoisson", produitsBoisson);
+		
+		List<Produit> produitsNourriture = new ArrayList<Produit>();
+		for(Produit p : produitRepository.findAll()){
+			if(p.getTypeproduit().compareToIgnoreCase("Nourriture") == 0)
+				produitsNourriture.add(p);
+		}
+		model.addAttribute("produitsNourriture", produitsNourriture);
+		
+		List<Produit> produitsElectro = new ArrayList<Produit>();
+		for(Produit p : produitRepository.findAll()){
+			if(p.getTypeproduit().compareToIgnoreCase("Electroménager") == 0)
+				produitsElectro.add(p);
+		}
+		model.addAttribute("produitsElectro", produitsElectro);
+		
+		List<Produit> produitsVetement = new ArrayList<Produit>();
+		for(Produit p : produitRepository.findAll()){
+			if(p.getTypeproduit().compareToIgnoreCase("Vetements") == 0)
+				produitsVetement.add(p);
+		}
+		model.addAttribute("produitsVetement", produitsVetement);
+		
+		List<Produit> produitsAutre = new ArrayList<Produit>();
+		for(Produit p : produitRepository.findAll()){
+			if(p.getTypeproduit().compareToIgnoreCase("Autre") == 0)
+				produitsAutre.add(p);
+		}
+		model.addAttribute("produitsAutre", produitsAutre);
+		
+		
+		
 		return "caisse";
 	}
 
