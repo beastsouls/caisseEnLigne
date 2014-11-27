@@ -5,10 +5,24 @@ public class ProduitQuantity {
 	
 	private Produit elementPanier;
 	private int quantity = 0;
+	private int tmpquantity = 0;
 	private double somme = 0;
+	private double tmpsomme = 0;
 	private double sommeTotalFacture = 0; 
 	
 	
+	public int getTmpquantity() {
+		return tmpquantity;
+	}
+	public void setTmpquantity(int tmpquantity) {
+		this.tmpquantity = tmpquantity;
+	}
+	public double getTmpsomme() {
+		return tmpsomme;
+	}
+	public void setTmpsomme(double tmpsomme) {
+		this.tmpsomme = tmpsomme;
+	}
 	public double getSommeTotalFacture() {
 		return sommeTotalFacture;
 	}

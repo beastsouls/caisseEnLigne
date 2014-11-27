@@ -134,8 +134,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 // nécessaire pour transformer String en double
 
+
+
 import projet.client.model.Client;
 import projet.client.repository.ClientRepository;
+import projet.produit.model.Produit;
+import projet.produit.repository.produitRepository;
 
 @Controller
 @RequestMapping("/charts")
@@ -143,7 +147,12 @@ public class chart {
 
 	@Autowired
 	private ClientRepository clientRepository;
+	
+	@Autowired
+	private produitRepository pRepository;
+	
 	private ArrayList<Client> c = new ArrayList<Client>();
+	private ArrayList<Produit> c2 = new ArrayList<Produit>();
 
 	private XYSeries series1 = new XYSeries("Planned");
 	private XYSeries series2 = new XYSeries("Delivered");
@@ -218,6 +227,75 @@ public class chart {
 		return dpd;
 	}
 
+	
+	@RequestMapping(value = "/piechart3", method = RequestMethod.GET)
+	public void DrawPieChart2(HttpServletResponse reponse) {
+		reponse.setContentType("image/png");
+		PieDataset pdSet = createDataS();
+
+		JFreeChart chart = createChart3(pdSet, "My Pie Chart");
+
+		try {
+			ChartUtilities.writeChartAsPNG(reponse.getOutputStream(), chart,750, 400);
+			reponse.getOutputStream().close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+
+	}
+
+	private JFreeChart createChart3(PieDataset pdSet, String string) {
+		JFreeChart chart = ChartFactory.createPieChart3D(string, pdSet, true, true, false);
+		PiePlot3D plot = (PiePlot3D) chart.getPlot();
+		plot.setStartAngle(290);
+		plot.setDirection(Rotation.CLOCKWISE);
+		plot.setForegroundAlpha(0.5f);
+
+		return chart;
+	}
+
+	private PieDataset createDataS() {
+
+		c2 = (ArrayList<Produit>) pRepository.findAll(); //tableau contenant otus les cients
+		ArrayList<Produit> c3 = new ArrayList<Produit>();// tableau qui va contenir les 5 plus gros depensier
+
+		int i;
+		int tmp = 0, tmp2 = 0;
+
+		for (int j = 0; j < 5; j++) {
+			double somme = 0;
+			for ( i = 0; i < c2.size(); i++) {
+				System.out.println("produit a l'index " + i + " est  " + c2.get(i).getName() );
+				System.out.println("qtit vendue  a l'index " + i + " est  " + c2.get(i).getQtiteVendu() +"\n" );
+				if (somme < c2.get(i).getQtiteVendu()) {
+					somme = c2.get(i).getQtiteVendu();
+					tmp = i;
+				}
+				
+			}
+			c3.add(c2.get(tmp));
+			c2.remove(tmp);
+		}
+		
+
+		DefaultPieDataset dpd = new DefaultPieDataset();
+////		dpd.setValue("Mac", 15);
+////		dpd.setValue("Linux", 30);
+////		dpd.setValue("Windows", 50);
+////		dpd.setValue("Other", 55);
+		for(int j = 0 ; j<c3.size() ; j ++)
+		{
+			System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH3  ");
+			dpd.setValue(c3.get(j).getName(), c3.get(j).getQtiteVendu());
+			System.out.println("produit " + j + " : " + c3.get(j).getName() + " --> rapporte : " + c3.get(j).getQtiteVendu() +  "\n");
+			//System.out.println("le somme N° " + j + " dans le graphique vaut " + somme + " et le client est " + c.get(j).getName() +  "\n");
+		}
+		return dpd;
+	}
+
+	
+	
+	
 	/* histo */
 
 	@RequestMapping(value = "/piechart2", method = RequestMethod.GET)

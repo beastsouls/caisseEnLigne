@@ -30,6 +30,10 @@ public class Produit {
     @Min(0)
 	private int stock;
 	
+	private int tmpstock;
+	
+	private double qtiteVendu=0;
+	
 //	private int qt;
 	
 	private int total =0;
@@ -84,6 +88,8 @@ public class Produit {
 	}
 	public void setStock(int stock) {
 		this.stock = stock;
+		this.tmpstock = stock;
+		System.out.println("stock" + this.stock);
 	}
 	public Produit(String name, String typeproduit, double prix, String description, int stock) {
 		this.name = name;
@@ -91,12 +97,25 @@ public class Produit {
 		Prix = prix;
 		this.description = description;
 		this.stock = stock;
+		this.tmpstock = stock;
 	}
 	
 	public Produit(){}
 	
 	public Produit(String name){
 		this.name = name;
+	}
+	public int getTmpstock() {
+		return tmpstock;
+	}
+	public void setTmpstock(int tmpstock) {
+		this.tmpstock = tmpstock;
+	}
+	public double getQtiteVendu() {
+		return qtiteVendu;
+	}
+	public void setQtiteVendu(double qtiteVendu) {
+		this.qtiteVendu = qtiteVendu;
 	}
 	
 //	public int getQt() {
@@ -105,5 +124,8 @@ public class Produit {
 //	public void setQt(int qt) {
 //		this.qt = qt;
 //	}
+	
+	
+	
 	
 }
