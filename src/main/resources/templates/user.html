@@ -1,310 +1,248 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>till online</title>
-<link rel="stylesheet" href="../css/screen.css" type="text/css"
-	media="screen" title="default" />
-<!--[if IE]>
-<link rel="stylesheet" media="all" type="text/css" href="css/pro_dropline_ie.css" />
-<![endif]-->
-
-<!--  jquery core -->
-<script src="../js/jquery/jquery-1.4.1.min.js" type="text/javascript"></script>
-
-<!--  checkbox styling script -->
-<script src="../js/jquery/ui.core.js" type="text/javascript"></script>
-<script src="../js/jquery/ui.checkbox.js" type="text/javascript"></script>
-<script src="../js/jquery/jquery.bind.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(function() {
-		$('input').checkBox();
-		$('#toggle-all').click(function() {
-			$('#toggle-all').toggleClass('toggle-checked');
-			$('#mainform input[type=checkbox]').checkBox('toggle');
-			return false;
-		});
-	});
-</script>
-
-
-
-
-
-<!--  styled select box script version 2 -->
-<script src="../js/jquery/jquery.selectbox-0.5_style_2.js"
-	type="text/javascript"></script>
-<script type="text/javascript">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/select/select2.css" />
+<link type="text/css" href="../bootstrap/css/bootstrap.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="/select/select2.js"></script>
+<link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default" />
+<script>
 	$(document).ready(function() {
-		$('.styledselect_form_1').selectbox({
-			inputClass : "styledselect_form_1"
-		});
-		$('.styledselect_form_2').selectbox({
-			inputClass : "styledselect_form_2"
-		});
+		$("#zzz").select2();
 	});
+	
+</script >
+
+<script>
+document.getElementById("accueil").removeAttribute("href");
 </script>
-
-<!--  styled select box script version 3 -->
-<script src="../js/jquery/jquery.selectbox-0.5_style_2.js"
-	type="text/javascript"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.styledselect_pages').selectbox({
-			inputClass : "styledselect_pages"
-		});
-	});
-</script>
-
-<!--  styled file upload script -->
-<script src="../js/jquery/jquery.filestyle.js" type="text/javascript"></script>
-<script type="text/javascript" charset="utf-8">
-	$(function() {
-		$("input.file_1").filestyle({
-			image : "images/forms/upload_file.gif",
-			imageheight : 29,
-			imagewidth : 78,
-			width : 300
-		});
-	});
-</script>
-
-<!-- Custom jquery scripts -->
-<script src="../js/jquery/custom_jquery.js" type="text/javascript"></script>
-
-<!-- Tooltips -->
-<script src="../js/jquery/jquery.tooltip.js" type="text/javascript"></script>
-<script src="../js/jquery/jquery.dimensions.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(function() {
-		$('a.info-tooltip ').tooltip({
-			track : true,
-			delay : 0,
-			fixPNG : true,
-			showURL : false,
-			showBody : " - ",
-			top : -35,
-			left : 5
-		});
-	});
-</script>
-
-<!--  date picker script -->
-<link rel="stylesheet" href="../css/datePicker.css" type="text/css" />
-
-
 
 </head>
-<body class="body-fond">
-	<!-- Start: page-top-outer -->
-	<div id="page-top-outer">
+<body>
+	<div id="bloc_page">
+		<!--  start nav-outer-repeat................................................................................................. START -->
+		<div class="nav-outer-repeat">
+			<!--  start nav-outer -->
+			<div class="nav-outer">
 
-		<!-- Start: page-top -->
-		<div id="page-top">
+				<!--  start nav -->
+				<div class="nav">
+					<div class="table">
 
-			<!-- start logo -->
-			<div id="logo">
-				<a href=""><img src="../images/shared/logo.png" width="100"
-					height="40" alt="" /></a>
-			</div>
-			<!-- end logo -->
+						<ul class="select">
+							<li><a id="accueil" href="#" ><b>Accueil</b></a></li>
+						</ul>
 
-			<!--  start top-search -->
-			<div id="top-search">
-				<table border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td><input type="text" value="Search"
-							onblur="if (this.value=='') { this.value='Search'; }"
-							onfocus="if (this.value=='Search') { this.value=''; }"
-							class="top-search-inp" /></td>
-						<td><select class="styledselect">
-								<option value="">All</option>
-								<option value="">Products</option>
-								<option value="">Categories</option>
-								<option value="">Clients</option>
-								<option value="">News</option>
-						</select></td>
-						<td><input type="image"
-							src="../images/shared/top_search_btn.gif" /></td>
-					</tr>
-				</table>
-			</div>
-			<!--  end top-search -->
-			<div class="clear"></div>
+						<div class="nav-divider">&nbsp;</div>
 
-		</div>
-		<!-- End: page-top -->
+						<ul class="current">
+							<li><a href="#"><b>Caisse</b></a></li>
+						</ul>
+						<div class="nav-divider">&nbsp;</div>
+						<ul class="select">
+							<li><a href="#"><b>Produit</b></a></li>
+							
+						</ul>
 
-	</div>
-	<!-- End: page-top-outer -->
+<!-- 						<div class="nav-divider">&nbsp;</div> -->
+		                    
+						<ul class="select"><li><a href="#"><b>Personnel</b></a></li>
+						</ul>
+						
+						<div class="nav-divider">&nbsp;</div>
 
-	<div class="clear">&nbsp;</div>
+						
+						
 
-	<!--  start nav-outer-repeat................................................................................................. START -->
-	<div class="nav-outer-repeat">
-		<!--  start nav-outer -->
-		<div class="nav-outer">
+						<ul class="select">
+							<li><a href="#"><b>Client</b></a></li>
+							<li><a href="#"><b>Facture</b></a></li>
+						</ul>
 
-			<!-- start nav-right -->
-			<div id="nav-right">
 
-				<div class="nav-divider">&nbsp;</div>
-				<div class="showhide-account">
-					<img src="../images/shared/nav/nav_myaccount.gif" width="93"
-						height="14" alt="" />
-				</div>
-				<div class="nav-divider">&nbsp;</div>
-				<a href="" id="logout"><img
-					src="../images/shared/nav/nav_logout.gif" width="64" height="14"
-					alt="" /></a>
-				<div class="clear">&nbsp;</div>
-
-				<!--  start account-content -->
-				<div class="account-content">
-					<div class="account-drop-inner">
-						<a href="" id="acc-settings">Settings</a>
-						<div class="clear">&nbsp;</div>
-						<div class="acc-line">&nbsp;</div>
-						<a href="" id="acc-details">Personal details </a>
-						<div class="clear">&nbsp;</div>
-						<div class="acc-line">&nbsp;</div>
-						<a href="" id="acc-project">Project details</a>
-						<div class="clear">&nbsp;</div>
-						<div class="acc-line">&nbsp;</div>
-						<a href="" id="acc-inbox">Inbox</a>
-						<div class="clear">&nbsp;</div>
-						<div class="acc-line">&nbsp;</div>
-						<a href="" id="acc-stats">Statistics</a>
 					</div>
 				</div>
-				<!--  end account-content -->
-
 			</div>
-			<!-- end nav-right -->
+		</div>
 
-		<!--  start nav -->
-		<div class="nav">
-		<div class="table">
-		
-		<ul class="select"><li><a href=""><b>Tab bord</b><!--[if IE 7]><!--></a><!--<![endif]-->
-		<!--[if lte IE 6]><table><tr><td><![endif]-->
-<!-- 		<div class="select_sub"> -->
-<!-- 			<ul class="sub"> -->
-<!-- 				<li><a href="#nogo">Statistique 1</a></li> -->
-<!-- 				<li><a href="#nogo">Statistique 2</a></li> -->
-<!-- 				<li><a href="#nogo">Statistique 3</a></li> -->
-<!-- 			</ul> -->
-<!-- 		</div> -->
-		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
-		</li>
-		</ul>
-		
-		<div class="nav-divider">&nbsp;</div>
-		                    
-		<ul class="select"><li><a href="/caisse"><b>Caisse</b><!--[if IE 7]><!--></a><!--<![endif]-->
-		<!--[if lte IE 6]><table><tr><td><![endif]-->
-		
-		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
-		</li>
-		</ul>
-		
-		<div class="nav-divider">&nbsp;</div>
-		
-		<ul class="select"><li><a href=""><b>Produit</b><!--[if IE 7]><!--></a><!--<![endif]-->
-		<!--[if lte IE 6]><table><tr><td><![endif]-->
-		<!--  <div class="select_sub">
+		<section style="margin-top: 30px;">
+			<article>
+				<h1>
+					<img src="images/ico_epingle.png" alt="Catégorie voyage"
+						class="ico_categorie" /> les produits
+				</h1>
 
-			<ul class="sub">
-				<li><a href="#nogo">Categories  1</a></li>
-				<li><a href="#nogo">Categories  2</a></li>
-				<li><a href="#nogo">Categories  3</a></li>
-			</ul>
-		</div> --> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
-					</ul>
+				<!-- récupérer les noms des différents produits et afficher sur les boutons du tableau -->
 
-					<div class="nav-divider">&nbsp;</div>
-
-					<ul class="select">
-						<li><a href=" "><b>Client</b> <!--[if IE 7]><!--></a>
-							<!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]--> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
-						</li>
-					</ul>
-
-					<ul class="select">
-						<li><a href=""><b>Facture</b> <!--[if IE 7]><!--></a> <!--<![endif]-->
-							<!--[if lte IE 6]><table><tr><td><![endif]--> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
-						</li>
-					</ul>
-
-					<div class="nav-divider">&nbsp;</div>
-
-					<ul class="select">
-						<li><a href=""><b>Personnel</b></a></li>
-					</ul>
-
-					<div class="clear"></div>
+				<div
+					style="border: 2px solid #a1a1a1; padding: 10px 20px; background: #dddddd; width: 350px; border-radius: 15px;">
+					<span th:each="produit : ${products}">
+						<form style="display: inline" th:action="@{/ajoutPanier(id=${produit.id})}" th:object="${produit}" method="post">
+							<!-- <input type="submit" th:value="${produit.name}" style="width: 100px; height: 30px;" /> -->
+							<input type="image" th:attr="src='../images/produits/'+${produit.name}+'.jpg'" width="100" height="80"/>
+						</form>
+					</span>
 				</div>
-				<div class="clear"></div>
-			</div>
-			<!--  start nav -->
+				<!-- 			<h1></h1> -->
+				<!-- 			<form th:action="@{/caisse}" th:object="${product}" method="post"> -->
+				<!-- 				<p> -->
+				<!-- 					produit: <input type="text" th:field="*{name}" /> -->
+				<!-- 				</p> -->
+				<!-- 				<p> -->
+				<!-- 					<input type="submit" value="Submit" /> -->
+				<!-- 				</p> -->
+				<!-- 			</form> -->
 
-		</div>
-		<div class="clear"></div>
-		<!--  start nav-outer -->
-	</div>
+			</article>
 
-	<!-- <div class="corp_accueil">	
-	
-	
- <div class="menu">
-  Menu
- </div>
- </div>
- -->
+			<!-- 		<aside> -->
+			<!-- 			<h1>LE PANIER</h1> -->
+			<!-- 			<ul> -->
+			<!-- 				<li th:each="product : ${session.panier}" th:text="${product.name}"></li> -->
+			<!-- 			</ul> -->
 
-
-
-	<div id="main">
-	Dans la div main
-		<div id="menu"></div>
-Dans la div Menu
-		<div id="contenu"> Dans la div contenu
-		<input type="button" th:each="produit : ${produits}" th:value="${produit.name}" />
+			<!-- 		</aside> -->
 		
-		</div>
+			<aside>
+				<h1>LE PANIER</h1>
+
+				<table>
+					<tr th:each="ProduitQuantity : ${session.panierListe}">
+						<td>
+							<form th:action="@{/calcul(id=${ProduitQuantity.value.elementPanier.id})}" method="post" style="width: auto;">
+								<!-- <input type="text" th:field="*{qt}" maxlength="2" size="2" value="1"/> -->
+								<td th:text="${ProduitQuantity.value.elementPanier.name}" style="padding: 5px;"></td>
+								<td th:text="${ProduitQuantity.value.elementPanier.Prix}+' euros'" style="padding: 5px;"></td>
+								<!-- <td th:text="${ProduitQuantity.qt}" style="padding: 5px;"></td>  -->
+								<td><input type="text" name="qt" maxlength="2" size="2" th:value="${ProduitQuantity.value.quantity}" /></td>
+								<td th:text="${ProduitQuantity.value.somme}  +' euros'" style="padding: 5px;"></td>
+							</form>
+						</td>
+					</tr>
+					<tr> 
+ 							<td>
+								<form th:action ="@{/resetPanier}" method="post" style="width: auto;"> 
+									<center><td><input type="submit" name= "reset" value="Vider le panier" /></td></center>
+								</form>
+							</td>
+					</tr>
+				</table>			
+			</aside>
+			
+			
+			<aside class="paie">
+			<h1>Enregistrement Client Et paiement</h1>
+			<table>
+			
+			<td><input type="submit" value="Creer un nouveau client" onclick="self.location.href='/create/clientPanier'" /></td>
+				
+				<form th:action="@{/paiement}" method="post" style="width: auto;">
+				
+				<tr>
+						<td>Choisir Client</td>
+
+							<td>
+							<SELECT id="nom" name="nom" style="width: 150px;">
+									<option th:each="client : ${clients}" th:text="${client.name}"
+										selected="selected" name="clientelle"></option>
+							</SELECT>
+							</td>
+					
+						</tr>
+						<tr>
+							<td> Moyen de paiment  </td>
+							<td><SELECT id="paye" name="paye" style="width: 150px;">
+									<option>ESPECE</option>
+									<option>CB</option>
+									<option>CHEQUE</option>
+							</SELECT></td>
+							<td><input type="Submit" value="Payer" name="payer" />
+							</td>
+						</tr>
+						
+						
+					</form>	
+				</table>
+				
+			</aside>
+			
+<!-- 			<aside class="total"> -->
+<!-- 				<h1>Total HT</h1> -->
+
+<!-- 				<table> -->
+<!-- 					<tr > -->
+<!-- 						<td th:text= "${session.total}"></td>  -->
+<!-- 					</tr> -->
+					
+<!-- 				</table> -->
+<!-- 			</aside> -->
+			
+<!-- 			<aside class="resetpanier"> -->
+<!-- 				<table> -->
+<!-- 					<tr> -->
+<!-- 					<td> -->
+<!-- 						<form th:action ="@{/resetPanier}" method="post" style="width: auto;"> -->
+<!-- 						<td><input type="submit" name= "reset" value="reset" /></td> -->
+<!-- 						</form> -->
+<!-- 					</td> -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+<!-- 			</aside> -->
+		</section>
+		
+		<table class="clientPanier">
+			
+			<tr>
+				
+				<td> Total à payer HT</td>
+				<td id="prixht" name="prixht"><span th:text= "${session.total}" ></span></td> 
+			</tr>
+			
+			<tr>
+				<td> Montant de la TVA</td>
+				<td id="tva" name="tva" th:text="${session.total} == null ? 0 : ${session.total} * 0.20 " ></td> 
+			</tr>
+			<tr>
+				<td> Montant Total à payer</td>
+				<td th:text="${session.total} == null ? 0 :${session.total} + ${session.total} * 0.20 "></td> 
+			</tr>
+			
+			<tr>
+				<td> Code bon d'achat</td>
+<!-- 				<td th:each="code : ${codePromos}"> -->
+					<td>
+					<form th:action="@{/validCode}" method="get" style="width: auto;">
+					<td><input type="text" placeholder="Code Promo" name="codepromos"/></td> 
+<!--  					<td><a th:href="@{/validCode(id=${code.id})}" name="soumettre">soumettre</a></td> -->
+					<td><input type="submit" name="soumettre"/></td>
+					</form>
+	 			</td>
+<!-- 				<td><input type="text" placeholder="Code Promo" name="codepromos"/></td>  -->
+<!--  	 			<td><a th:href="@{/validCode}"> Soumettre </a></td>  -->
+			</tr>
+			
+			
+			<tr>
+				<td th:text="${session.message} == 0 ?  'Le bon de reduction est invalide' : '' " style="color: red;"></td>
+			</tr>
+			
+			
+			<tr>
+				<td> Total après soustraction de la promo</td>
+ 				<td th:text="${session.totale}"></td>  
+<!-- 				<td th:text="${session.total} == null ? 0 :${session.total} + ${session.total} * 0.20 "></td>  -->
+			</tr>
+			
+		</table>
+		
+		
+		
+
 	</div>
-
-
-
-<div id="page-heading"><h1>Caisse</h1></div>
-
-
-<!-- start form here -->
-
-
-
-
-
-
-<div class="clear">&nbsp;</div>
-
-
-<!--  end content -->
-<div class="clear">&nbsp;</div>
-<!--  end content-outer -->
-
- 
-
-<div class="clear">&nbsp;</div>
-    
-<!-- start footer -->         
-<div id="footer">
-	<!--  start footer-left 
-	<div id="footer-left"> Admin Skin &copy; Copyright Internet Dreams Ltd. <a href="">www.netdreams.co.uk</a>. All rights reserved.</div>-->
-	<!--  end footer-left -->
-	<div class="clear">&nbsp;</div>
-</div>
-<!-- end footer -->
- 
 </body>
 </html>

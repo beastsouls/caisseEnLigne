@@ -97,7 +97,19 @@ public class Controlleur {
 		return "redirect:/caisse";
 	}
 
-	
+	@RequestMapping(value = "/supprime", method = RequestMethod.POST)
+	public String supprimeElement(@RequestParam("id") Long id, Model model, HttpSession session , Produit produit) {
+		panierListe = (Map<Long,ProduitQuantity>) session.getAttribute("panierListe");
+		System.out.println("id du produit selectionné:"+id);
+		System.out.println("element selectionné :"+panierListe.get(id).getElementPanier().getName());
+		total =total  - panierListe.get(id).getSomme();
+			panierListe.remove(id);
+			session.setAttribute("total",total);
+		 session.setAttribute("panierListe",panierListe);
+		
+		
+		return "redirect:/caisse";
+	}
 	
 	@RequestMapping(value = "/calcul", method = RequestMethod.POST)
 	public String calculpanierSubmit(@RequestParam("qt") int qt,@RequestParam("id") Long id, Model model, HttpSession session , Produit produit) {
