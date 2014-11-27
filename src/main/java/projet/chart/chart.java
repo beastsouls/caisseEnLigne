@@ -134,10 +134,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 // nécessaire pour transformer String en double
 
-
-
 import projet.client.model.Client;
 import projet.client.repository.ClientRepository;
+import projet.facture.model.FactureModel;
+import projet.facture.repository.FactureRepository;
 import projet.produit.model.Produit;
 import projet.produit.repository.produitRepository;
 
@@ -151,6 +151,9 @@ public class chart {
 	@Autowired
 	private produitRepository pRepository;
 	
+	@Autowired
+	private FactureRepository fRepository ;
+	
 	private ArrayList<Client> c = new ArrayList<Client>();
 	private ArrayList<Produit> c2 = new ArrayList<Produit>();
 
@@ -160,6 +163,22 @@ public class chart {
 
 	// http://www.massapi.com/class/de/DefaultXYDataset.html
 
+	private int nbre()
+	{
+		ArrayList<String> nom = new ArrayList<String>();
+		for (FactureModel f : fRepository.findAll() )
+		{
+			if(!nom.contains(f.getNomclient()))
+			{
+				nom.add(f.getNomclient());
+			}
+		}
+		System.out.println(nom.size());
+		return nom.size();
+		
+	}
+	
+	
 	@RequestMapping(value = "/piechart", method = RequestMethod.GET)
 	public void DrawPieChart(HttpServletResponse reponse) {
 		reponse.setContentType("image/png");
@@ -196,7 +215,7 @@ public class chart {
 		int i;
 		int tmp = 0, tmp2 = 0;
 
-		for (int j = 0; j < 5; j++) {
+		for (int j = 0; j < nbre(); j++) {
 			double somme = 0;
 			for ( i = 0; i < c.size(); i++) {
 				System.out.println("client a l'index " + i + " est  " + c.get(i).getName() );

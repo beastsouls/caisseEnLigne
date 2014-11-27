@@ -325,6 +325,12 @@ public class Controlleur {
 		lafacture.setMontant(montant);
 		lafacture.setTva(montant*0.20);
 		factureRepository.save(lafacture);
+		
+		Client c = clientRepository.findByName(nom);
+		System.out.println("somme client "  + c.getSommePayer()); 
+		c.setSommePayer(c.getSommePayer() + montant);
+		clientRepository.save(c);
+		System.out.println("somme client "  + c.getSommePayer()); 
 		model.addAttribute("factur", factureRepository.findAll());
 		
         panierListe.clear();
@@ -382,6 +388,7 @@ public class Controlleur {
 		total =total  - panierListe.get(id).getTmpsomme();
 		System.out.println("TOTAL : " +total);
 			panierListe.remove(id);
+			prodPrix.remove(id);
 			session.setAttribute("total",total);
 		 session.setAttribute("panierListe",panierListe);
 		

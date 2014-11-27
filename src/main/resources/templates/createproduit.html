@@ -3,24 +3,70 @@
 
 <head>
 <title>produit</title>
-<link rel="stylesheet" type="text/css" href="/cproduit.css" />
+<!-- <link rel="stylesheet" type="text/css" href="/cproduit.css" /> -->
+
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <script type="text/javascript" 
 	src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
+<style>
+.error{
+color: red
+}
+body {
+margin-top: 40px;
+text-align: center;
+font-size: 14px;
+font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+}
+page table {
+width: 900px;
+text-align : center;
+margin: 0 auto;
+}
+message {
+color: red
+}
+
+input[type="text"]{
+	width: 30%;
+	height: 30px;
+	}
+
+select {
+width: 30%;
+	height: 30px;
+}
+
+
+input[type="submit"]
+{
+width: 30%;
+	height: 25%;
+
+}
+
+</style>
+
 </head>
 <body>
+<page>
+<fieldset>
 
 	<div class="wrapper">
+	<div class="hero-unit">
 		<div th:switch="${produit.id}">
+		
 			<h1 th:case="-1">Creer un nouveau produit</h1>
 			<h1 th:case="*">Editer un produit existant</h1>
+			</div>
 		</div>
 
 
-		<form action="#" th:object="${produit}" method="post" enctype="multipart/form-data">
-			<input type="text" th:field="*{name}" placeholder="Name" class="name" STYLE='color:black'/>
+		<form action="#" th:object="${produit}" method="post" enctype="multipart/form-data" >
+			<input type="text" th:field="*{name}" placeholder="Name" class="name" STYLE='color:black' />
 			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 			<div>
 				<p class="name-help">Nom du produit.</p>
@@ -39,7 +85,7 @@
 				</SELECT>
   		 
 			<div>
-				<p class="type-help">Type du produit.</p>
+				<p class="type-help"></p>
 			</div>
 	
 		
@@ -64,14 +110,21 @@
 			
 			Image(seulement jpeg) : <input type="file" name="file"/>
 			
-		<table>
-			<td><FORM ACTION="/produit/"><INPUT TYPE="SUBMIT" VALUE="envoyer" class="submit" />	</FORM></td>
-			<td><FORM ACTION="/produit/"><INPUT TYPE="SUBMIT" VALUE="retour" class="submit" />	</FORM></td>
+		<div>
+		<table> 
+			<tr><p><br/></p>
+			</tr>
+			<tr>
+			<td><span><FORM ACTION="/produit/"><INPUT TYPE="SUBMIT" VALUE="Envoyer"  class="btn btn-success"/>	</FORM> 
+			<FORM ACTION="/produit/"><INPUT TYPE="SUBMIT" VALUE="Retour"  class="btn btn-danger"/>	</FORM></span></td>
+			</tr>
 		</table>
+		</div>
 	
-					</form>
+	</form>
 </div>
-
+</fieldset>
+</page>
 </body>
 </html>
 
@@ -88,11 +141,11 @@
 		$(".prix-help").slideUp(500);
 	});
 
-	$(".type").focus(function() {
-		$(".type-help").slideDown(500);
-	}).blur(function() {
-		$(".type-help").slideUp(500);
-	});
+// 	$(".type").focus(function() {
+// 		$(".type-help").slideDown(500);
+// 	}).blur(function() {
+// 		$(".type-help").slideUp(500);
+// 	});
 
 	$(".stock").focus(function() {
 		$(".stock-help").slideDown(500);
