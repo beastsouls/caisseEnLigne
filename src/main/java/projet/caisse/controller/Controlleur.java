@@ -258,6 +258,7 @@ public class Controlleur {
 			
 			return "redirect:/caisse";
 			}
+		setvaleur();
 		double montant = 0;
 
 		ArrayList<String> fact = new ArrayList<String>();
