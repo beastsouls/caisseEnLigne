@@ -42,30 +42,55 @@ public class AppController {
 	private CodePromoRepository CPrepository;
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String createForm(Model model,Authentication authentication)
-	 {
+	public String createForm(Model model) {
 		model.addAttribute("products", produitRepository.findAll());
-		model.addAttribute("clients",  clientRepository.findAll());
-		model.addAttribute("codePromos",  CPrepository.findAll());
+		model.addAttribute("clients", clientRepository.findAll());
+		model.addAttribute("codePromos", CPrepository.findAll());
 		model.addAttribute("product", new Produit());
 		
-		if(authentication.getName().equalsIgnoreCase("admin"))
-		{
-			return "form";
+		List<Produit> produitsBoisson = new ArrayList<Produit>();
+		for(Produit p : produitRepository.findAll()){
+			if(p.getTypeproduit().compareToIgnoreCase("Boisson") == 0)
+				produitsBoisson.add(p);
 		}
-		else
+		model.addAttribute("produitsBoisson", produitsBoisson);
 		
-			
-			{return "user";
+		List<Produit> produitsNourriture = new ArrayList<Produit>();
+		for(Produit p : produitRepository.findAll()){
+			if(p.getTypeproduit().compareToIgnoreCase("Nourriture") == 0)
+				produitsNourriture.add(p);
+		}
+		model.addAttribute("produitsNourriture", produitsNourriture);
 		
-			}
+		List<Produit> produitsElectro = new ArrayList<Produit>();
+		for(Produit p : produitRepository.findAll()){
+			if(p.getTypeproduit().compareToIgnoreCase("Electroménager") == 0)
+				produitsElectro.add(p);
+		}
+		model.addAttribute("produitsElectro", produitsElectro);
 		
+		List<Produit> produitsVetement = new ArrayList<Produit>();
+		for(Produit p : produitRepository.findAll()){
+			if(p.getTypeproduit().compareToIgnoreCase("Vetements") == 0)
+				produitsVetement.add(p);
+		}
+		model.addAttribute("produitsVetement", produitsVetement);
+		
+		List<Produit> produitsAutre = new ArrayList<Produit>();
+		for(Produit p : produitRepository.findAll()){
+			if(p.getTypeproduit().compareToIgnoreCase("Autre") == 0)
+				produitsAutre.add(p);
+		}
+		model.addAttribute("produitsAutre", produitsAutre);
+		
+		
+		
+		return "user";
 	}
-	
 
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
-	public String productSubmit(@ModelAttribute Produit product,	HttpSession session, Model model) 
-	{
+	public String productSubmit(@ModelAttribute Produit product,
+			HttpSession session, Model model) {
 		List<Produit> panier = (List<Produit>) session.getAttribute("panier");
 		if (panier == null)
 			panier = new ArrayList<Produit>();
@@ -73,6 +98,8 @@ public class AppController {
 		session.setAttribute("panier", panier);
 		return "redirect:/user";
 	}
+
+	
 	
 	
 }

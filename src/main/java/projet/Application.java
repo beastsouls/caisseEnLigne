@@ -55,7 +55,33 @@ public class Application {
         prepository.save(new Produit("abricot", "Nourriture", 10.0 , "orange" , 1000));
         prepository.save(new Produit("peche", "Nourriture", 10.0 , "orange" , 1000));
         prepository.save(new Produit("pamplemousse", "Nourriture", 10.0 , "orange" , 1000));
-       
+        
+        
+        prepository.save(new Produit("armani pulls homme", "Vetements", 10.0 , "armani pulls homme" , 1000));
+        prepository.save(new Produit("jeans femme bleu", "Vetements", 10.0 , "jeans femme bleu" , 1000));
+        prepository.save(new Produit("jeans homme bleu", "Vetements", 10.0 , "jeans homme bleu" , 1000)); 
+        prepository.save(new Produit("pull en angora rouge sud", "Vetements", 10.0 , "pull en angora rouge sud" , 1000));
+        prepository.save(new Produit("pull en maille", "Vetements", 10.0 , "pull en maille" , 1000));
+        prepository.save(new Produit("pull capuche maille", "Vetements", 10.0 , "pull capuche maille" , 1000));  
+        prepository.save(new Produit("ralph lauren pulls vert", "Vetements", 10.0 , "ralph lauren pulls vert" , 1000));
+        
+        
+        prepository.save(new Produit("coca 0.5l", "Boisson", 10.0 , "coca 0.5l" , 1000));
+        prepository.save(new Produit("coca 33cl", "Boisson", 10.0 , "coca 33cl" , 1000));
+        prepository.save(new Produit("fanta 33cl", "Boisson", 10.0 , "fanta 33cl" , 1000));
+        prepository.save(new Produit("orangina", "Boisson", 95.0 , "orangina" , 1000));
+        
+        
+        prepository.save(new Produit("tele sony", "Autre", 10.0 , "tele sony" , 1000));
+        prepository.save(new Produit("tele samsung 3d", "Autre", 10.0 , "tele samsung 3d" , 1000));
+        
+        
+        prepository.save(new Produit("machine a laver bosch", "Electroménager", 10.0 , "machine a laver bosch" , 1000));
+        prepository.save(new Produit("machine a laver samsung", "Electroménager", 10.0 , "machine a laver samsung" , 1000));
+        prepository.save(new Produit("micro onde whirlpool", "Electroménager", 10.0 , "micro onde whirlpool" , 1000)); 
+        prepository.save(new Produit("mixeur", "Electroménager", 10.0 , "mixeur" , 1000));
+        prepository.save(new Produit("frigo americain", "Electroménager", 10.0 , "frigo americain" , 1000));
+        
 
         crepository.save(new Client("jean","pdg", "test" , "n@gmail.com", "test"));
         crepository.save(new Client("pierre","pdg", "test" , "n@gmail.com", "test"));

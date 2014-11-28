@@ -6,6 +6,8 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 <link rel="stylesheet" type="text/css" href="/select/select2.css" />
 <link type="text/css" href="../bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -13,20 +15,63 @@
 <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default" />
 <script>
 	$(document).ready(function() {
-		$("#zzz").select2();
+		$("#nom").select2();
 	});
 	
-</script >
-
-<script>
-document.getElementById("accueil").removeAttribute("href");
+	function image(valeur){
+		document.getElementById("paye").value = valeur;
+		if(valeur=="cb"){
+			$('#cb').css('border','4px solid black');
+			$('#cheque').css('border','4px solid white');
+			$('#espece').css('border','4px solid white');
+		}else if(valeur=="cheque"){
+			$('#cb').css('border','4px solid white');
+			$('#cheque').css('border','4px solid black');
+			$('#espece').css('border','4px solid white');
+		} else if(valeur=="espece"){
+			$('#cb').css('border','4px solid white');
+			$('#cheque').css('border','4px solid white');
+			$('#espece').css('border','4px solid black');
+		}
+		
+	}
+	
+	function test(){
+		if(document.getElementById("test")==null){
+			$('#reset').css('visibility','hidden');
+		    document.getElementById("payer").hidden = true;
+		}
+		if(document.getElementById("test")!=null){
+			$('#reset').css('visibility','visible');
+			document.getElementById("payer").hidden = false;
+		}
+	}
 </script>
+
+<style>
+.btn-small.btn-success{
+width:100px;
+height:20px;
+margin:5px;
+background-color:#62c462;
+color:white;
+}
+
+.btn-large.btn-success{
+width:200px;
+height:25px;
+margin:5px;
+background-color:#62c462;
+color:white;
+}
+
+</style>
 
 </head>
 <body>
 	<div id="bloc_page">
 		<!--  start nav-outer-repeat................................................................................................. START -->
-		<div class="nav-outer-repeat">
+		<div class="nav-outer-repeat" style="padding-left : 600px;">
 			<!--  start nav-outer -->
 			<div class="nav-outer">
 
@@ -35,7 +80,7 @@ document.getElementById("accueil").removeAttribute("href");
 					<div class="table">
 
 						<ul class="select">
-							<li><a id="accueil" href="#" ><b>Accueil</b></a></li>
+							<li><a href="#"><b>Accueil</b></a></li>
 						</ul>
 
 						<div class="nav-divider">&nbsp;</div>
@@ -70,24 +115,105 @@ document.getElementById("accueil").removeAttribute("href");
 			</div>
 		</div>
 
-		<section style="margin-top: 30px;">
+		<section style="margin-top: 30px; padding-left: 325px">
 			<article>
-				<h1>
-					<img src="images/ico_epingle.png" alt="Catégorie voyage"
-						class="ico_categorie" /> les produits
-				</h1>
-
-				<!-- récupérer les noms des différents produits et afficher sur les boutons du tableau -->
-
-				<div
-					style="border: 2px solid #a1a1a1; padding: 10px 20px; background: #dddddd; width: 350px; border-radius: 15px;">
-					<span th:each="produit : ${products}">
+			
+			<div>
+		
+		<ul class="tabs">
+		
+		<li>
+          <input type="radio" name="tabs" id="tab1" checked="checked"/>
+          <label for="tab1">Nourriture</label>
+          <div id="tab-content1" class="tab-content animated fadeIn">
+					<!-- style="border: 2px solid #a1a1a1; padding: 10px 20px; background: #dddddd; width: 350px; border-radius: 15px;"> -->
+					<span th:each="produit : ${produitsNourriture}">
 						<form style="display: inline" th:action="@{/ajoutPanier(id=${produit.id})}" th:object="${produit}" method="post">
 							<!-- <input type="submit" th:value="${produit.name}" style="width: 100px; height: 30px;" /> -->
 							<input type="image" th:attr="src='../images/produits/'+${produit.name}+'.jpg'" width="100" height="80"/>
 						</form>
 					</span>
-				</div>
+				
+          </div>
+        </li>
+		
+	
+        <li>
+          <input type="radio" name="tabs" id="tab2"/>
+          <label for="tab2">Boissons</label>
+          <div id="tab-content2" class="tab-content animated fadeIn">
+				<!-- 	style="border: 2px solid #a1a1a1; padding: 10px 20px; background: #dddddd; width: 350px; border-radius: 15px;"> -->
+					<span th:each="produit : ${produitsBoisson}">
+						<form style="display: inline" th:action="@{/ajoutPanier(id=${produit.id})}" th:object="${produit}" method="post">
+							<!-- <input type="submit" th:value="${produit.name}" style="width: 100px; height: 30px;" /> -->
+							<input type="image" th:attr="src='../images/produits/'+${produit.name}+'.jpg'" width="100" height="80"/>
+						</form>
+					</span>
+				
+          </div>
+        </li>
+        
+        <li>
+          <input type="radio" name="tabs" id="tab3"/>
+          <label for="tab3">Vêtements</label>
+          <div id="tab-content3" class="tab-content animated fadeIn">
+					<!-- style="border: 2px solid #a1a1a1; padding: 10px 20px; background: #dddddd; width: 350px; border-radius: 15px;"> -->
+					<span th:each="produit : ${produitsVetement}">
+						<form style="display: inline" th:action="@{/ajoutPanier(id=${produit.id})}" th:object="${produit}" method="post">
+							<!-- <input type="submit" th:value="${produit.name}" style="width: 100px; height: 30px;" /> -->
+							<input type="image" th:attr="src='../images/produits/'+${produit.name}+'.jpg'" width="100" height="80"/>
+						</form>
+					</span>
+				
+          </div>
+        </li>
+        
+        <li>
+          <input type="radio" name="tabs" id="tab4"/>
+          <label for="tab4">Electroménager</label>
+          <div id="tab-content4" class="tab-content animated fadeIn">
+					<!-- style="border: 2px solid #a1a1a1; padding: 10px 20px; background: #dddddd; width: 350px; border-radius: 15px;"> -->
+					<span th:each="produit : ${produitsElectro}">
+						<form style="display: inline" th:action="@{/ajoutPanier(id=${produit.id})}" th:object="${produit}" method="post">
+							<!-- <input type="submit" th:value="${produit.name}" style="width: 100px; height: 30px;" /> -->
+							<input type="image" th:attr="src='../images/produits/'+${produit.name}+'.jpg'" width="100" height="80"/>
+						</form>
+					</span>
+				
+          </div>
+        </li>
+        
+        <li>
+          <input type="radio" name="tabs" id="tab5"/>
+          <label for="tab5">Autre</label>
+          <div id="tab-content5" class="tab-content animated fadeIn">
+            <!-- style="border: 2px solid #a1a1a1; padding: 10px 20px; background: #dddddd; width: 350px; border-radius: 15px;"> -->
+					<span th:each="produit : ${produitsAutre}">
+						<form style="display: inline" th:action="@{/ajoutPanier(id=${produit.id})}" th:object="${produit}" method="post">
+							<!-- <input type="submit" th:value="${produit.name}" style="width: 100px; height: 30px;" /> -->
+							<input type="image" th:attr="src='../images/produits/'+${produit.name}+'.jpg'" width="100" height="80"/>
+						</form>
+					</span>
+          </div>
+        </li>
+</ul>
+		</div>
+				<!-- <h1>
+					<img src="images/ico_epingle.png" alt="Catégorie voyage"
+						class="ico_categorie" /> les produits
+				</h1>
+
+				récupérer les noms des différents produits et afficher sur les boutons du tableau
+
+				<div
+					style="border: 2px solid #a1a1a1; padding: 10px 20px; background: #dddddd; width: 350px; border-radius: 15px;">
+					<span th:each="produit : ${products}">
+						<form style="display: inline" th:action="@{/ajoutPanier(id=${produit.id})}" th:object="${produit}" method="post">
+							<input type="submit" th:value="${produit.name}" style="width: 100px; height: 30px;" />
+							<input type="image" th:attr="src='../images/produits/'+${produit.name}+'.jpg'" width="100" height="80"/>
+						</form>
+					</span>
+				</div> -->
 				<!-- 			<h1></h1> -->
 				<!-- 			<form th:action="@{/caisse}" th:object="${product}" method="post"> -->
 				<!-- 				<p> -->
@@ -111,91 +237,38 @@ document.getElementById("accueil").removeAttribute("href");
 			<aside>
 				<h1>LE PANIER</h1>
 
-				<table>
+				<table id="reset">
 					<tr th:each="ProduitQuantity : ${session.panierListe}">
 						<td>
 							<form th:action="@{/calcul(id=${ProduitQuantity.value.elementPanier.id})}" method="post" style="width: auto;">
+								<input type='hidden' id="test" name="test"/>
 								<!-- <input type="text" th:field="*{qt}" maxlength="2" size="2" value="1"/> -->
-								<td th:text="${ProduitQuantity.value.elementPanier.name}" style="padding: 5px;"></td>
+								<td th:text="${ProduitQuantity.value.elementPanier.name} + ' (' + ${ProduitQuantity.value.elementPanier.tmpstock} + ')'" style="padding: 5px;"></td>
 								<td th:text="${ProduitQuantity.value.elementPanier.Prix}+' euros'" style="padding: 5px;"></td>
 								<!-- <td th:text="${ProduitQuantity.qt}" style="padding: 5px;"></td>  -->
-								<td><input type="text" name="qt" maxlength="2" size="2" th:value="${ProduitQuantity.value.quantity}" /></td>
-								<td th:text="${ProduitQuantity.value.somme}  +' euros'" style="padding: 5px;"></td>
+								<td><input type="number" name="qt" maxlength="2" size="2" th:value="${ProduitQuantity.value.tmpquantity}" /></td>
+								<td th:text="${ProduitQuantity.value.tmpsomme}  +' euros'" style="padding: 5px;"></td>
+							
+							</form>
+							<form th:action="@{/supprime(id=${ProduitQuantity.value.elementPanier.id})}" method="post">
+							<td colspan="3"><input type="submit" name="sup" value="supprimer" class="btn-large btn-success" style="width: 110px;"/></td>
 							</form>
 						</td>
 					</tr>
 					<tr> 
  							<td>
 								<form th:action ="@{/resetPanier}" method="post" style="width: auto;"> 
-									<center><td><input type="submit" name= "reset" value="Vider le panier" /></td></center>
+									<center><td><input type="submit" name= "reset" value="Vider le panier" class="btn-large btn-success" /></td></center>
 								</form>
 							</td>
+							
 					</tr>
-				</table>			
-			</aside>
-			
-			
-			<aside class="paie">
-			<h1>Enregistrement Client Et paiement</h1>
-			<table>
-			
-			<td><input type="submit" value="Creer un nouveau client" onclick="self.location.href='/create/clientPanier'" /></td>
+					<tr> <td> <p>  <br/></p></td></tr>
+				</table>	
 				
-				<form th:action="@{/paiement}" method="post" style="width: auto;">
+				<tr></tr>
 				
-				<tr>
-						<td>Choisir Client</td>
-
-							<td>
-							<SELECT id="nom" name="nom" style="width: 150px;">
-									<option th:each="client : ${clients}" th:text="${client.name}"
-										selected="selected" name="clientelle"></option>
-							</SELECT>
-							</td>
-					
-						</tr>
-						<tr>
-							<td> Moyen de paiment  </td>
-							<td><SELECT id="paye" name="paye" style="width: 150px;">
-									<option>ESPECE</option>
-									<option>CB</option>
-									<option>CHEQUE</option>
-							</SELECT></td>
-							<td><input type="Submit" value="Payer" name="payer" />
-							</td>
-						</tr>
-						
-						
-					</form>	
-				</table>
-				
-			</aside>
-			
-<!-- 			<aside class="total"> -->
-<!-- 				<h1>Total HT</h1> -->
-
-<!-- 				<table> -->
-<!-- 					<tr > -->
-<!-- 						<td th:text= "${session.total}"></td>  -->
-<!-- 					</tr> -->
-					
-<!-- 				</table> -->
-<!-- 			</aside> -->
-			
-<!-- 			<aside class="resetpanier"> -->
-<!-- 				<table> -->
-<!-- 					<tr> -->
-<!-- 					<td> -->
-<!-- 						<form th:action ="@{/resetPanier}" method="post" style="width: auto;"> -->
-<!-- 						<td><input type="submit" name= "reset" value="reset" /></td> -->
-<!-- 						</form> -->
-<!-- 					</td> -->
-<!-- 					</tr> -->
-<!-- 				</table> -->
-<!-- 			</aside> -->
-		</section>
-		
-		<table class="clientPanier">
+					<table>
 			
 			<tr>
 				
@@ -213,36 +286,93 @@ document.getElementById("accueil").removeAttribute("href");
 			</tr>
 			
 			<tr>
-				<td> Code bon d'achat</td>
+			<form th:action="@{/validCode}" method="get" style="width: auto;">
+				<td> Code promo
 <!-- 				<td th:each="code : ${codePromos}"> -->
-					<td>
-					<form th:action="@{/validCode}" method="get" style="width: auto;">
-					<td><input type="text" placeholder="Code Promo" name="codepromos"/></td> 
+					
+					
+					<input type="text"  placeholder="Code Promo" style="margin:0 0 0 40px;" name="codepromos"/> </td>
 <!--  					<td><a th:href="@{/validCode(id=${code.id})}" name="soumettre">soumettre</a></td> -->
-					<td><input type="submit" name="soumettre"/></td>
-					</form>
-	 			</td>
+						<td><input type="submit" class="btn-small btn-success"  name="soumettre"/></td>
+					
+	 			
+	 			</form>
 <!-- 				<td><input type="text" placeholder="Code Promo" name="codepromos"/></td>  -->
 <!--  	 			<td><a th:href="@{/validCode}"> Soumettre </a></td>  -->
 			</tr>
 			
 			
-			<tr>
-				<td th:text="${session.message} == 0 ?  'Le bon de reduction est invalide' : '' " style="color: red;"></td>
+			
+			<tr  th:switch="${session.message}" >
+				<td th:case="0"><span style="color:red;">
+				<script>
+					alert("Bon de reduction invalide");
+				</script>
+				
+				</span></td> 
+<!-- 				<td th:case="1"><span style="color:green;">Le bon de reduction a bien était pris en compte</span></td> -->
+<!-- 				<td th:case="2"><span style="color:red;">Le bon de reduction n'existe pas</span></td> -->
+			
+
 			</tr>
 			
 			
 			<tr>
-				<td> Total après soustraction de la promo</td>
+				<td> Total après promotion</td>
  				<td th:text="${session.totale}"></td>  
 <!-- 				<td th:text="${session.total} == null ? 0 :${session.total} + ${session.total} * 0.20 "></td>  -->
 			</tr>
 			
-		</table>
+		</table>				
+			</aside>
+			
+			
+			<aside class="paie">
+			<h1>Client et paiement</h1>
+			
+			<table>
+			
+					<form th:action="@{/paiement}" method="post" style="width: auto;">	
+			<tr>
+				<td style="padding: 5px;">Client</td>
+				<td style="padding: 5px;">
+					<SELECT id="nom" name="nom" style="width: 150px;">
+							<option th:each="client : ${clients}" th:text="${client.name}"
+								selected="selected" name="clientelle"></option>
+					</SELECT>
+				
+					<input type="button" value="Creer un nouveau client" class="btn-large btn-success" onclick="self.location.href='/create/clientPanier'" />
+					
+						
+				</td>
+				
+			</tr>
+			
+			<tr>
+				<td style="padding: 5px;">Moyen de paiment</td>
+				<td style="padding: 5px;"><a href="javascript:image('cb');"><img id="cb" style="border:4px solid black" name="cb" src="../images/payement/cb.jpg"/> </a>
+				<a href="javascript:image('cheque');"><img id="cheque" src="../images/payement/cheque.jpg"/> </a>
+				<a href="javascript:image('espece');"><img id="espece" src="../images/payement/espece.jpg"/> </a>
+				<input  type='hidden' name='paye' id='paye' value="cb"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td><input id="payer" type="Submit" value="Payer" class="btn-small btn-success"  name="payer" /></td>
+			</tr>
+			
+			
+			</form>	
+			<script> test(); </script>
+			</table>
+			
+</aside>
+			
+		</section>
 		
-		
-		
+
 
 	</div>
 </body>
 </html>
+
