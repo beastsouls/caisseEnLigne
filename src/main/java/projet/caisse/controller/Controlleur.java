@@ -40,6 +40,8 @@ public class Controlleur {
 	private Map<Long, ProduitQuantity> facture;
 	private double prixht = 0;
 	private double totale = 0;
+	private double reduction =0;
+	private double totalavantreduction = 0;
 	double tva;
 	private boolean valpourstock = false;
 	private int tmp = 0;
@@ -182,6 +184,7 @@ public class Controlleur {
 	
 		prixht = total;
 		tva = prixht * 0.20;
+		totalavantreduction = prixht+tva;
 		prodQuantity.setSommeTotalFacture(tva); // attention
 		session.setAttribute("total", total);
 		//session.setAttribute("stock", messtock);
@@ -243,11 +246,14 @@ public class Controlleur {
 		}
 
 		if (message == 1) {
+			reduction = c.getMontant();
 			totale = (total * 1.20) - c.getMontant();
 			// total = totale;
 		} else if (message == 0) {
+			reduction = 0;
 			totale = total * 1.20;
 		} else {
+			reduction = 0;
 			totale = total * 1.20;
 		}
 
@@ -255,6 +261,7 @@ public class Controlleur {
 		session.setAttribute("totale", totale);
 
 		message = 3;
+		totale =0;
 		return "redirect:/caisse";
 	}
 
@@ -320,8 +327,10 @@ public class Controlleur {
 
 		lafacture.setMoyen(paye);
 		lafacture.setNomclient(nom);
+		lafacture.setTotalavantreduction(totalavantreduction);
+		lafacture.setReduction(reduction);
 		lafacture.setDatecommande(new Date());
-		lafacture.setMontantTTC(montant * 1.20);
+		lafacture.setMontantTTC((montant * 1.20)-reduction);
 		lafacture.setMontant(montant);
 		lafacture.setTva(montant*0.20);
 		factureRepository.save(lafacture);
@@ -334,6 +343,10 @@ public class Controlleur {
 		model.addAttribute("factur", factureRepository.findAll());
 		
         panierListe.clear();
+        reduction = 0;
+        totalavantreduction = 0;
+        totale = 0;
+        session.setAttribute("totale", totale);
         System.out.println(panierListe.size());
 		return "facture";
 	}
@@ -373,6 +386,7 @@ public class Controlleur {
 		total = 0;
 		session.setAttribute("panierListe", panierListe);
 		session.setAttribute("total", total);
+		
 		return "redirect:/caisse";
 	}
 	

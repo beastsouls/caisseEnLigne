@@ -147,7 +147,7 @@ function initButtonImprimer() {
 						<td class="auto-style13" style="width: 30%">[ France]</td>
 					</tr>
 					<tr>
-						<td class="auto-style22" style="width: 30%; height: 44px;"></td>
+						<td class="auto-style22" style="width: 30%; height: 44px;"> </td>
 						<td class="auto-style21" style="width: 15%; height: 44px;"><span
 							th:text="${facture.id}"></span></td>
 						<td class="auto-style21" style="width: 15%; height: 44px;"><span
@@ -168,6 +168,7 @@ function initButtonImprimer() {
 			<td class="auto-style15" style="width: 10%">Quantité</td>
 			<td class="auto-style15" style="width: 10%">PU / € HT</td>
 			<td class="auto-style15" style="width: 20%">Montant / € HT</td>
+			
 		</tr>
 
 		<tr>
@@ -196,10 +197,11 @@ function initButtonImprimer() {
 					<li th:each="mtt : ${facture.listemontant}" th:text="${mtt}"></li>
 				</ul>
 			</td>
+			
 		</tr>
 		
 		<tr>
-			<td class="auto-style6" colspan="2" rowspan="5" style="border:none;"></td>
+			<td class="auto-style6" colspan="2" rowspan="6" style="border:none;"></td>
 			<td class="auto-style18" colspan="2">Sous-Total</td>
 			<td class="auto-style23"><span th:text="${facture.montant}"></span></td>
 		</tr>
@@ -208,6 +210,15 @@ function initButtonImprimer() {
 			<td class="auto-style23"><span th:text="${facture.tva}"></span></td>
 		</tr>
 		<tr>
+			<td class="auto-style18" colspan="2"> Avant Reduction</td>
+			<td class="auto-style23"><span th:text="${facture.totalavantreduction}"></span></td>
+		</tr>
+		<tr>
+			<td class="auto-style18" colspan="2">Réduction de </td>
+			<td class="auto-style23"><span th:text="${facture.reduction}"></span></td>
+		</tr>
+		<tr>
+		    
 			<td class="auto-style15" colspan="2">Net à Payer</td>
 			<td class="auto-style17"><span th:text="${facture.montantTTC}"></span></td>
 		</tr>
@@ -215,9 +226,8 @@ function initButtonImprimer() {
 			<td class="auto-style15" colspan="2">Payée par</td>
 			<td class="auto-style17"><span th:text="${facture.moyen}"></span></td>
 		</tr>
-		<tr>
-			
-		</tr>
+		
+		
 		<tr>
 			<td colspan="3"></td>
 			<td>

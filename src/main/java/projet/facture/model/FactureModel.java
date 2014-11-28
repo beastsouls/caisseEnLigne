@@ -23,9 +23,13 @@ public class FactureModel {
 	private double montantTTC;
 	private double tva;
 	
+	
+
 	private String moyen;
 	private String Nomclient;
 	private Date datecommande;
+	private double reduction;
+	private double totalavantreduction;
 	
 
 	private ArrayList<String> mesproduits = new ArrayList<String>();
@@ -34,6 +38,23 @@ public class FactureModel {
 	private ArrayList<String> listemontant = new ArrayList<String>();
 	private ArrayList<String> listeprix = new ArrayList<String>();
 	private ArrayList<Long> listeid = new ArrayList<Long>();
+	
+	
+	public double getTotalavantreduction() {
+		return totalavantreduction;
+	}
+
+	public void setTotalavantreduction(double totalavantreduction) {
+		this.totalavantreduction = totalavantreduction;
+	}
+
+	public double getReduction() {
+		return reduction;
+	}
+
+	public void setReduction(double reduction) {
+		this.reduction = reduction;
+	}
 	
 	public ArrayList<Long> getListeid() {
 		return listeid;
