@@ -244,10 +244,10 @@ color:white;
 								<input type='hidden' id="test" name="test"/>
 								<!-- <input type="text" th:field="*{qt}" maxlength="2" size="2" value="1"/> -->
 								<td th:text="${ProduitQuantity.value.elementPanier.name} + ' (' + ${ProduitQuantity.value.elementPanier.tmpstock} + ')'" style="padding: 5px;"></td>
-								<td th:text="${ProduitQuantity.value.elementPanier.Prix}+' euros'" style="padding: 5px;"></td>
+								<td th:text="${ProduitQuantity.value.elementPanier.Prix}+' €'" style="padding: 5px;"></td>
 								<!-- <td th:text="${ProduitQuantity.qt}" style="padding: 5px;"></td>  -->
 								<td><input type="number" name="qt" maxlength="2" size="2" th:value="${ProduitQuantity.value.tmpquantity}" /></td>
-								<td th:text="${ProduitQuantity.value.tmpsomme}  +' euros'" style="padding: 5px;"></td>
+								<td th:text="${ProduitQuantity.value.tmpsomme}  +' €'" style="padding: 5px;"></td>
 							
 							</form>
 							<form th:action="@{/supprime(id=${ProduitQuantity.value.elementPanier.id})}" method="post">
@@ -273,16 +273,16 @@ color:white;
 			<tr>
 				
 				<td> Total à payer HT</td>
-				<td id="prixht" name="prixht"><span th:text= "${session.total}" ></span></td> 
+				<td id="prixht" name="prixht"><span th:text= "${session.total} + ' €'" ></span></td> 
 			</tr>
 			
 			<tr>
 				<td> Montant de la TVA</td>
-				<td id="tva" name="tva" th:text="${session.total} == null ? 0 : ${session.total} * 0.20 " ></td> 
+				<td id="tva" name="tva" th:text="${session.total} == null ? 0  : ${session.total} * 0.20  + ' €'" ></td> 
 			</tr>
 			<tr>
 				<td> Montant Total à payer</td>
-				<td th:text="${session.total} == null ? 0 :${session.total} + ${session.total} * 0.20 "></td> 
+				<td th:text="${session.total} == null ? 0  :${session.total} + ${session.total} * 0.20  + ' €'" ></td> 
 			</tr>
 			
 			<tr>
@@ -319,7 +319,7 @@ color:white;
 			
 			<tr>
 				<td> Total après promotion</td>
- 				<td th:text="${session.totale}"></td>  
+ 				<td th:text="${session.totale} "></td>  
 <!-- 				<td th:text="${session.total} == null ? 0 :${session.total} + ${session.total} * 0.20 "></td>  -->
 			</tr>
 			
