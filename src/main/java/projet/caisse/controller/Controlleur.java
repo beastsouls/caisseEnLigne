@@ -259,9 +259,9 @@ public class Controlleur {
 
 		session.setAttribute("message", message);
 		session.setAttribute("totale", totale);
+		totale = 0;
 
 		message = 3;
-		totale =0;
 		return "redirect:/caisse";
 	}
 
@@ -296,6 +296,13 @@ public class Controlleur {
 		}
 	}
 	
+	@RequestMapping(value = "/paiement/", method = RequestMethod.GET)
+	public String facture(Model model) {
+		model.addAttribute("factur", factureRepository.findAll());
+		return "facture";
+	}
+	
+	
 	@RequestMapping(value = "/paiement", method = RequestMethod.POST)
 	public String payerenespece(Model model, HttpSession session, @RequestParam("nom") String nom, @RequestParam("paye") String paye) {
 		panierListe = (Map<Long, ProduitQuantity>) session.getAttribute("panierListe");
@@ -325,11 +332,13 @@ public class Controlleur {
 
 		}
 
+		
 		lafacture.setMoyen(paye);
 		lafacture.setNomclient(nom);
 		lafacture.setTotalavantreduction(totalavantreduction);
 		lafacture.setReduction(reduction);
 		lafacture.setDatecommande(new Date());
+		lafacture.setMontantTTC(montant * 1.20);
 		lafacture.setMontantTTC((montant * 1.20)-reduction);
 		lafacture.setMontant(montant);
 		lafacture.setTva(montant*0.20);
@@ -386,7 +395,6 @@ public class Controlleur {
 		total = 0;
 		session.setAttribute("panierListe", panierListe);
 		session.setAttribute("total", total);
-		
 		return "redirect:/caisse";
 	}
 	
@@ -410,3 +418,4 @@ public class Controlleur {
 		return "redirect:/caisse";
 	}
 }
+

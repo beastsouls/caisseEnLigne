@@ -57,7 +57,7 @@ body
 
 #bloc_page
 {
-    width: 900px;
+    width: 100%;
     height: 1000px;
     margin: auto;
 }

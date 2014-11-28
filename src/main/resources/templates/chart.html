@@ -1,26 +1,93 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<HEAD>
-<TITLE>INSEE- EDUCNET : l'emploi - &eacute;volution des CSP</TITLE>
-<!-- <META http-equiv=Content-Language content=fr> -->
-<!-- <META http-equiv=Content-Type content="text/html; charset=windows-1252"> -->
-<!-- <META content="MSHTML 5.50.4522.1800" name=GENERATOR> -->
-<!-- <meta name="KeyWords" content="sciences économiques et sociales,PCS, CSP, SES, profession et catégorie sociale"> -->
-<!-- <meta name="Author" content="Educnet, Isabelle Gautier"> -->
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="/chart.css" />
-<script language="javascript" src="/layer.js">
+<head>
+<title>Graphiques</title>
+<!-- <link rel="stylesheet" type="text/css" href="/cproduit.css" /> -->
 
-</script>
-</HEAD>
-<BODY>
-<div>
-	<img th:src="@{/charts/piechart}"/>
-	</div>
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<style>
+.error {
+	color: red
+}
+
+body {
+	margin-top: 40px;
+	text-align: center;
+	font-size: 14px;
+	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+	background-image: url("/images/graph.jpg");
+	background-position: 100% 400px;
+	background-repeat: no-repeat;
 	
-	
-	<div>
-	<img th:src="@{/charts/piechart3}"/>
+}
+
+page {
+	width: 900px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+table {
+	width: 300px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+message {
+	color: red
+}
+
+input[type="text"] {
+	width: 30%;
+	height: 30px;
+}
+
+select {
+	width: 30%;
+	height: 30px;
+}
+
+input[type="submit"] {
+	width: 70%;
+	height: 70%;
+}
+
+.form {
+	padding-right: 300px;
+}
+</style>
+
+</head>
+<body>
+	<page>
+	<fieldset>
+
+		<div class="wrapper">
+			<div class="hero-unit">
+				<div>
+					<h1>Graphiques</h1>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<div class="form">
+		<img th:src="@{/charts/piechart}" />
 	</div>
-</BODY>
+
+
+	<div class="form">
+		<img th:src="@{/charts/piechart3}" />
+	</div>
+
+
+	</page>
+</body>
 </html>
+
