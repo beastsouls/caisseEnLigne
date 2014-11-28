@@ -1,63 +1,141 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <title>Client</title>
-<link rel="stylesheet" type="text/css" href="/cClient2.css" />
+<!-- <link rel="stylesheet" type="text/css" href="/cproduit.css" /> -->
+
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<style>
+.error {
+	color: red
+}
+
+body {
+	margin-top: 40px;
+	text-align: center;
+	font-size: 14px;
+	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+}
+
+page {
+	width: 900px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+table {
+	width: 300px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+message {
+	color: red
+}
+
+input[type="text"] {
+	width: 30%;
+	height: 30px;
+}
+
+select {
+	width: 30%;
+	height: 30px;
+}
+
+input[type="submit"] {
+	width: 70%;
+	height: 70%;
+}
+</style>
 
 </head>
 <body>
+	<page>
+	<fieldset>
 
-<div class="wrapper">
-<!-- 	<div th:switch="${client.id}" > -->
-		<h1>Creer un nouveau client</h1>
-<!-- 		<h1 th:case="*">Editer un client existant</h1> -->
-<!-- 	</div> -->
+		<div class="wrapper">
+			<div class="hero-unit">
+				<div th:switch="${client.id}">
+
+					<h1 th:case="-1">Créer un nouveau Client</h1>
+<!-- 					<h1 th:case="*">Editer un client existant</h1> -->
+				</div>
+			</div>
 
 
-	<form action="#" th:object="${client}" method="post">
-		<input type="text" th:field="*{name}" placeholder="Name" class="name" STYLE='color:black'/>
-		<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-			<div>
-				<p class="name-help">Nom et le prénom du client.</p>
-			</div>
-			
-		<input type="text" th:field="*{compagnie}" placeholder="compagnie" class="compagnie" STYLE='color:black'/>
-		<span th:if="${#fields.hasErrors('compagnie')}" th:errors="*{compagnie}"></span>
-			<div>
-				<p class="compagnie-help">Rentrer le nom de l'entreprise.</p>
-			</div>
-	
-		
-		<input type="text" th:field="*{Email}" placeholder="Email" class="Email" STYLE='color:black'/>
-		<span th:if="${#fields.hasErrors('Email')}" th:errors="*{Email}"></span>
-			<div>
-				<p class="Email-help">Adresse e-mail valide du client.</p>
-			</div>
-		
-		
-		<input type="text" th:field="*{Adresse}" placeholder="Adresse" class="Adresse" STYLE='color:black'/>
-		<span th:if="${#fields.hasErrors('Adresse')}" th:errors="*{Adresse}"></span>
-			<div>
-				<p class="Adresse-help">Coordonnée du client.</p>
-			</div>
-			
-		 
-		<input type="text" th:field="*{role}" placeholder="role" class="role" STYLE='color:black'/>
-		<span th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></span>
-			<div>
-				<p class="role-help">Role du client.</p>
-			</div>
-			
-		
-		<table>
-			<td><form ACTION="../caisse/"><INPUT TYPE="SUBMIT" VALUE="envoyer" class="submit"/></form></td>
-			<td><form ACTION="../caisse/"><INPUT TYPE="SUBMIT" VALUE="retour" class="submit"/></form></td>
-		</table>
-	</form>
-</div>
+			<form action="#" th:object="${client}" method="post">
+				<input type="text" th:field="*{name}" placeholder="Name"
+					class="name" STYLE='color: black' /> <span
+					th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+				<div>
+					<p class="name-help">Nom et le prénom du client.</p>
+				</div>
 
+				<input type="text" th:field="*{compagnie}" placeholder="compagnie"
+					class="compagnie" STYLE='color: black' /> <span
+					th:if="${#fields.hasErrors('compagnie')}" th:errors="*{compagnie}"></span>
+				<div>
+					<p class="compagnie-help">Rentrer le nom de l'entreprise.</p>
+				</div>
+
+				<input type="text" th:field="*{Email}" placeholder="Email"
+					class="Email" STYLE='color: black' /> <span
+					th:if="${#fields.hasErrors('Email')}" th:errors="*{Email}"></span>
+				<div>
+					<p class="Email-help">Adresse e-mail valide du client.</p>
+				</div>
+
+
+				<input type="text" th:field="*{Adresse}" placeholder="Adresse"
+					class="Adresse" STYLE='color: black' /> <span
+					th:if="${#fields.hasErrors('Adresse')}" th:errors="*{Adresse}"></span>
+				<div>
+					<p class="Adresse-help">Coordonnée du client.</p>
+				</div>
+
+
+				<input type="text" th:field="*{role}" placeholder="role"
+					class="role" STYLE='color: black' /> <span
+					th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></span>
+				<div>
+					<p class="role-help">Role du client.</p>
+				</div>
+
+				<div>
+					<table cellspacing="3">
+						<tr>
+							<p>
+								<br />
+							</p>
+						</tr>
+						<tr>
+
+							<span>
+
+								<FORM ACTION="/client/">
+									<td><INPUT TYPE="SUBMIT" VALUE="Envoyer"
+										class="btn btn-success" /></td>
+									<td><INPUT TYPE="SUBMIT" VALUE="Retour"
+										class="btn btn-danger" /></td>
+								</FORM>
+
+							</span>
+
+						</tr>
+					</table>
+				</div>
+
+			</form>
+		</div>
+	</fieldset>
+	</page>
 </body>
 </html>
 

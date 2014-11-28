@@ -1,69 +1,157 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<title>Employe</title>
-<link rel="stylesheet" type="text/css" href="/cEmploye.css" />
+<title>Employé</title>
+<!-- <link rel="stylesheet" type="text/css" href="/cproduit.css" /> -->
+
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<style>
+.error {
+	color: red
+}
+
+body {
+margin-top: 40px;
+text-align: center;
+font-size: 14px;
+font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+background-image: url("/images/employe.jpg");
+background-position: 100% 200px;
+background-repeat: no-repeat;
+}
+page  {
+width: 900px;
+text-align : center;
+margin: 0 auto;
+}
+
+ table {
+width: 300px;
+text-align : center;
+margin: 0 auto;
+}
+
+
+message {
+color: red
+}
+
+input[type="text"]{
+	width: 30%;
+	height: 30px;
+	}
+
+select {
+width: 30%;
+	height: 30px;
+}
+
+
+input[type="submit"]
+{
+width: 70%;
+	height: 70%;
+
+}
+
+form{
+
+padding-right: 300px;
+
+}
+
+</style>
 
 </head>
 <body>
+	<page>
+	<fieldset>
 
-<div class="wrapper">
-	<div th:switch="${employe.id}" >
-		<h1 th:case="-1">Creer un nouveau employe</h1>
+		<div class="wrapper">
+			<div class="hero-unit">
+				<div th:switch="${employe.id}" >
+		<h1 th:case="-1">Créer un nouveau Employé</h1>
 		<h1 th:case="*">Editer un employe existant</h1>
 	</div>
 
+			</div>
 
-	<form action="#"  th:object="${employe}" method="post">
-		<input type="text" th:field="*{name}" placeholder="Name" class="name" STYLE='color:white'/>
+
+		<form action="#"  th:object="${employe}" method="post">
+		<input type="text" th:field="*{name}" placeholder="Name" class="name" />
 		<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 			<div>
 				<p class="name-help">Nom du employe.</p>
 			</div>
 			
-		<input type="text" th:field="*{prenom}" placeholder="prenom" class="prenom" STYLE='color:white'/>
+		<input type="text" th:field="*{prenom}" placeholder="prenom" class="prenom" />
 		<span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></span>
 			<div>
 				<p class="prenom-help">Rentrer le prenom de l'employé.</p>
 			</div>
 	
 		
-		<input type="text" th:field="*{Email}" placeholder="Email" class="Email" STYLE='color:white'/>
+		<input type="text" th:field="*{Email}" placeholder="Email" class="Email" />
 		<span th:if="${#fields.hasErrors('Email')}" th:errors="*{Email}"></span>
 			<div>
 				<p class="Email-help">Adresse e-mail valide du employe.</p>
 			</div>
 		
 		
-		<input type="text" th:field="*{Adresse}" placeholder="Adresse" class="Adresse" STYLE='color:white'/>
+		<input type="text" th:field="*{Adresse}" placeholder="Adresse" class="Adresse" />
 		<span th:if="${#fields.hasErrors('Adresse')}" th:errors="*{Adresse}"></span>
 			<div>
 				<p class="Adresse-help">Coordonnée du employe.</p>
 			</div>
 			
 		 
-		<input type="text" th:field="*{login}" placeholder="login" class="login" STYLE='color:white'/>
+		<input type="text" th:field="*{login}" placeholder="login" class="login" />
 		<span th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
 			<div>
 				<p class="login-help">login du employe.</p>
 			</div>
 			
-		<input type="text" th:field="*{password}" placeholder="password" class="password" STYLE='color:white'/>
+		<input type="text" th:field="*{password}" placeholder="password" class="password" />
 		<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 			<div>
 				<p class="password-help">password du employe.</p>
 			</div>
 			
-		
-		<table>
-			<td><form ACTION="../employe/"><INPUT TYPE="SUBMIT" VALUE="envoyer" class="submit"/></form></td>
-			<td><form ACTION="../employe/"><INPUT TYPE="SUBMIT" VALUE="retour" class="submit"/></form></td>
-		</table>
-	</form>
-</div>
+			
+				<div>
+					<table cellspacing="3">
+						<tr>
+							<p>
+								<br />
+							</p>
+						</tr>
+						<tr>
 
+							<span>
+
+								<FORM ACTION="../employe/">
+									<td><INPUT TYPE="SUBMIT" VALUE="Envoyer"
+										class="btn btn-success" /></td>
+									<td><INPUT TYPE="SUBMIT" VALUE="Retour"
+										class="btn btn-danger" /></td>
+								</FORM>
+
+							</span>
+
+						</tr>
+					</table>
+				</div>
+
+			</form>
+		</div>
+	</fieldset>
+	</page>
 </body>
 </html>
 

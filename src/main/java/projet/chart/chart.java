@@ -178,13 +178,31 @@ public class chart {
 		
 	}
 	
+//	private int nbre2()
+//	{
+//		ArrayList<String> nom = new ArrayList<String>();
+//		for (Produit p : pRepository.findAll() )
+//		{
+//			int cpt = p.getStock();
+//			System.out.println("cpt " + p.getCpt() +  "stock   " + p.getStock());
+//			if(cpt > p.getTmpstock())
+//			{
+//				if(!nom.contains(p.getName())){
+//				nom.add(p.getName());}
+//			}
+//		}
+//		System.out.println(nom.size());
+//		return nom.size();
+//		
+//	}
+	
 	
 	@RequestMapping(value = "/piechart", method = RequestMethod.GET)
 	public void DrawPieChart(HttpServletResponse reponse) {
 		reponse.setContentType("image/png");
 		PieDataset pdSet = createDataSet();
 
-		JFreeChart chart = createChart(pdSet, "My Pie Chart");
+		JFreeChart chart = createChart(pdSet, "Clients les plus prolifiques");
 
 		try {
 			ChartUtilities.writeChartAsPNG(reponse.getOutputStream(), chart,
@@ -238,10 +256,9 @@ public class chart {
 //		dpd.setValue("Other", 55);
 		for(int j = 0 ; j<c2.size() ; j ++)
 		{
-			System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH3  ");
+			
 			dpd.setValue(c2.get(j).getName(), c2.get(j).getSommePayer());
-			System.out.println("client " + j + " : " + c2.get(j).getName() + " --> somme : " + c2.get(j).getSommePayer() +  "\n");
-			//System.out.println("le somme N° " + j + " dans le graphique vaut " + somme + " et le client est " + c.get(j).getName() +  "\n");
+			
 		}
 		return dpd;
 	}
@@ -252,7 +269,7 @@ public class chart {
 		reponse.setContentType("image/png");
 		PieDataset pdSet = createDataS();
 
-		JFreeChart chart = createChart3(pdSet, "My Pie Chart");
+		JFreeChart chart = createChart3(pdSet, "Produits rapportant le plus d'argent");
 
 		try {
 			ChartUtilities.writeChartAsPNG(reponse.getOutputStream(), chart,750, 400);

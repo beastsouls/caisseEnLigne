@@ -89,6 +89,7 @@ public class Produit {
 	public void setStock(int stock) {
 		this.stock = stock;
 		this.tmpstock = stock;
+		this.cpt = stock;
 		System.out.println("stock" + this.stock);
 	}
 	public Produit(String name, String typeproduit, double prix, String description, int stock) {

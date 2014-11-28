@@ -45,6 +45,21 @@ display: none;
 	color:black;
 }
 
+.montant-help, .code-help, .debut-help, .fin-help{
+display: none;
+	padding: 0px;
+	margin: 0px 0px 15px 0px;
+	color:black;
+}
+
+.name-help, .prenom-help, .Email-help, .Adresse-help, .login-help, .password-help{
+display: none;
+	padding: 0px;
+	margin: 0px 0px 15px 0px;
+	color: black;
+}
+
+
 .input-block-level {
   display: block;
   width: 100%;
