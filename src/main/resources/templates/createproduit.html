@@ -21,11 +21,19 @@ text-align: center;
 font-size: 14px;
 font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 }
-page table {
+page  {
 width: 900px;
 text-align : center;
 margin: 0 auto;
 }
+
+ table {
+width: 300px;
+text-align : center;
+margin: 0 auto;
+}
+
+
 message {
 color: red
 }
@@ -43,8 +51,8 @@ width: 30%;
 
 input[type="submit"]
 {
-width: 30%;
-	height: 25%;
+width: 70%;
+	height: 70%;
 
 }
 
@@ -111,12 +119,20 @@ width: 30%;
 			Image(seulement jpeg) : <input type="file" name="file"/>
 			
 		<div>
-		<table> 
+		<table cellspacing="3"> 
 			<tr><p><br/></p>
 			</tr>
 			<tr>
-			<td><span><FORM ACTION="/produit/"><INPUT TYPE="SUBMIT" VALUE="Envoyer"  class="btn btn-success"/>	</FORM> 
-			<FORM ACTION="/produit/"><INPUT TYPE="SUBMIT" VALUE="Retour"  class="btn btn-danger"/>	</FORM></span></td>
+			
+				<span>
+				
+					<FORM ACTION="/produit/">
+						<td><INPUT TYPE="SUBMIT" VALUE="Envoyer"  class="btn btn-success"/></td>
+						<td><INPUT TYPE="SUBMIT" VALUE="Retour"  class="btn btn-danger"/></td>
+					</FORM> 
+				
+			</span>
+				
 			</tr>
 		</table>
 		</div>

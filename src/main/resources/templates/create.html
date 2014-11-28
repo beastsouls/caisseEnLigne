@@ -1,15 +1,71 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<title>Client</title>
-<link rel="stylesheet" type="text/css" href="/cClient.css" />
+<title>produit</title>
+<!-- <link rel="stylesheet" type="text/css" href="/cproduit.css" /> -->
+
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script type="text/javascript" 
+	src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<style>
+.error{
+color: red
+}
+body {
+margin-top: 40px;
+text-align: center;
+font-size: 14px;
+font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+}
+page  {
+width: 900px;
+text-align : center;
+margin: 0 auto;
+}
+
+ table {
+width: 300px;
+text-align : center;
+margin: 0 auto;
+}
+
+
+message {
+color: red
+}
+
+input[type="text"]{
+	width: 30%;
+	height: 30px;
+	}
+
+select {
+width: 30%;
+	height: 30px;
+}
+
+
+input[type="submit"]
+{
+width: 70%;
+	height: 70%;
+
+}
+
+</style>
 
 </head>
 <body>
+<page>
+<fieldset>
+
 
 <div class="wrapper">
+	<div class="hero-unit">
 	<div th:switch="${client.id}" >
 		<h1 th:case="-1">Creer un nouveau client</h1>
 		<h1 th:case="*">Editer un client existant</h1>
@@ -50,16 +106,40 @@
 				<p class="role-help">Role du client.</p>
 			</div>
 			
-		
-		<table>
-			<td><form ACTION="../client/"><INPUT TYPE="SUBMIT" VALUE="envoyer" class="submit"/></form></td>
-			<td><form ACTION="../client/"><INPUT TYPE="SUBMIT" VALUE="retour" class="submit"/></form></td>
+		<table cellspacing="3"> 
+			<tr><p><br/></p>
+			</tr>
+			<tr>
+			
+				<span>
+				
+					<FORM ACTION="../client/">
+						<td><INPUT TYPE="SUBMIT" VALUE="envoyer"  class="btn btn-success"/></td>
+						<td><INPUT TYPE="SUBMIT" VALUE="retour" class="btn btn-danger"/></td>
+					</FORM> 
+				
+			</span>
+				
+			</tr>
 		</table>
+		</div>
+	
 	</form>
 </div>
-
+</fieldset>
+</page>
 </body>
 </html>
+		
+<!-- 		<table> -->
+<!-- 			<td><form ACTION="../client/"><INPUT TYPE="SUBMIT" VALUE="envoyer" class="submit"/></form></td> -->
+<!-- 			<td><form ACTION="../client/"><INPUT TYPE="SUBMIT" VALUE="retour" class="submit"/></form></td> -->
+<!-- 		</table> -->
+<!-- 	</form> -->
+<!-- </div> -->
+
+<!-- </body> -->
+<!-- </html> -->
 
 <script>
 	$(".name").focus(function() {
