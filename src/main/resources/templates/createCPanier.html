@@ -17,42 +17,55 @@
 }
 
 body {
-	margin-top: 40px;
-	text-align: center;
-	font-size: 14px;
-	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+margin-top: 40px;
+text-align: center;
+font-size: 14px;
+font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+background-image: url("/images/client.png");
+background-position: 100% 200px;
+background-repeat: no-repeat;
+}
+page  {
+width: 900px;
+text-align : center;
+margin: 0 auto;
 }
 
-page {
-	width: 900px;
-	text-align: center;
-	margin: 0 auto;
+ table {
+width: 300px;
+text-align : center;
+margin: 0 auto;
 }
 
-table {
-	width: 300px;
-	text-align: center;
-	margin: 0 auto;
-}
 
 message {
-	color: red
+color: red
 }
 
-input[type="text"] {
+input[type="text"]{
 	width: 30%;
 	height: 30px;
-}
+	}
 
 select {
-	width: 30%;
+width: 30%;
 	height: 30px;
 }
 
-input[type="submit"] {
-	width: 70%;
+
+input[type="submit"]
+{
+width: 70%;
 	height: 70%;
+
 }
+
+form{
+
+padding-right: 300px;
+
+}
+
 </style>
 
 </head>
@@ -65,7 +78,7 @@ input[type="submit"] {
 				<div th:switch="${client.id}">
 
 					<h1 th:case="-1">Créer un nouveau Client</h1>
-<!-- 					<h1 th:case="*">Editer un client existant</h1> -->
+					<h1 th:case="*">Editer un client existant</h1>
 				</div>
 			</div>
 
@@ -122,8 +135,8 @@ input[type="submit"] {
 								<FORM ACTION="/client/">
 									<td><INPUT TYPE="SUBMIT" VALUE="Envoyer"
 										class="btn btn-success" /></td>
-									<td><INPUT TYPE="SUBMIT" VALUE="Retour"
-										class="btn btn-danger" /></td>
+									<td><INPUT TYPE="button" VALUE="Retour"
+										class="btn btn-danger" onclick="self.location.href='/caisse/'"/></td>
 								</FORM>
 
 							</span>
