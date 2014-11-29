@@ -47,6 +47,13 @@ input[type="text"]{
 	height: 30px;
 	}
 
+
+input[type="password"]{
+	width: 30%;
+	height: 30px;
+	}
+	
+	
 select {
 width: 30%;
 	height: 30px;
@@ -117,7 +124,7 @@ padding-right: 300px;
 				<p class="login-help">login du employe.</p>
 			</div>
 			
-		<input type="text" th:field="*{password}" placeholder="password" class="password" />
+		<input type="password" th:field="*{password}" placeholder="password" class="password" />
 		<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 			<div>
 				<p class="password-help">password du employe.</p>

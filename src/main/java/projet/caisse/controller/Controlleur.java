@@ -1,13 +1,12 @@
 package projet.caisse.controller;
 
-import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -35,11 +34,13 @@ public class Controlleur {
 	private produitRepository produitRepository;
 
 	private Map<Long, ProduitQuantity> panierListe;
-	private double total = 0;
+	private double total = 0.00;
 	private int message = 2;
 	private Map<Long, ProduitQuantity> facture;
 	private double prixht = 0;
-	private double totale = 0;
+	
+    DecimalFormat df = new DecimalFormat("0.00");
+	private double totale = 0.00;
 	private double reduction =0;
 	private double totalavantreduction = 0;
 	double tva;
@@ -48,7 +49,7 @@ public class Controlleur {
 	private Map<String, Double>  file = new LinkedHashMap<String, Double>();
 	//contient le prix par produit
 	private Map<Long, Integer>  prodPrix = new LinkedHashMap<Long, Integer>();
-	
+	private int type = 0;
 	//valuer contenant le stock total
 	private int stock = 0; 
 
@@ -103,7 +104,7 @@ public class Controlleur {
 		}
 		model.addAttribute("produitsAutre", produitsAutre);
 		
-		
+		model.addAttribute("type", type);
 		
 		return "caisse";
 	}
@@ -141,6 +142,23 @@ public class Controlleur {
 			Pquantity.setQuantity(0);
 			panierListe.put(Pquantity.getElementPanier().getId(), Pquantity);
 		}
+		
+		if(produit.getTypeproduit().compareToIgnoreCase("Nourriture") == 0){
+			type = 1;
+		}
+		if(produit.getTypeproduit().compareToIgnoreCase("Boisson") == 0){
+			type = 2;
+		}
+		if(produit.getTypeproduit().compareToIgnoreCase("Vetements") == 0){
+			type = 3;
+		}
+		if(produit.getTypeproduit().compareToIgnoreCase("Electroménager") == 0){
+			type = 4;
+		}
+		if(produit.getTypeproduit().compareToIgnoreCase("Autre") == 0){
+			type = 5;
+		}
+		model.addAttribute("type", type);
 
 		session.setAttribute("panierListe", panierListe);
 		return "redirect:/caisse";
@@ -258,7 +276,7 @@ public class Controlleur {
 		}
 
 		session.setAttribute("message", message);
-		session.setAttribute("totale", totale);
+		session.setAttribute("totale",df.format(totale));
 		totale = 0;
 
 		message = 3;
@@ -355,7 +373,7 @@ public class Controlleur {
         reduction = 0;
         totalavantreduction = 0;
         totale = 0;
-        session.setAttribute("totale", totale);
+        session.setAttribute("totale", df.format(totale));
         System.out.println(panierListe.size());
 		return "facture";
 	}

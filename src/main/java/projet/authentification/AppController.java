@@ -42,7 +42,7 @@ public class AppController {
 	private CodePromoRepository CPrepository;
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String createForm(Model model) {
+	public String createForm(Model model, Authentication authentication) {
 		model.addAttribute("products", produitRepository.findAll());
 		model.addAttribute("clients", clientRepository.findAll());
 		model.addAttribute("codePromos", CPrepository.findAll());
@@ -83,9 +83,15 @@ public class AppController {
 		}
 		model.addAttribute("produitsAutre", produitsAutre);
 		
+		if(authentication.getName().equalsIgnoreCase("admin"))
+		{
+		return "form";
+		}
+		else
+		{return "user";
+		}
 		
 		
-		return "user";
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
@@ -99,7 +105,17 @@ public class AppController {
 		return "redirect:/user";
 	}
 
-	
-	
+//	
+//	@RequestMapping(value="/index",method=RequestMethod.GET)
+//	public String postLogin(Authentication authentication)
+//	{
+//	if(authentication.getName().equalsIgnoreCase("admin"))
+//	{
+//	return "form";
+//	}
+//	else
+//	{return "user";
+//	}
+//	}
 	
 }

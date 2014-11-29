@@ -96,7 +96,7 @@ public class Application {
         cprepository.save(new CodePromo(50, new Date("10/10/2014"), new Date("30/12/2014") , "AZERTYU")); //valide
         cprepository.save(new CodePromo(150,new Date("10/10/2014"), new Date("10/11/2014") , "AZERTYP"));// invalid
         cprepository.save(new CodePromo(40,new Date("10/01/2013"), new Date("10/12/2013") , "AZERTYM"));//invalide	
-        cprepository.save(new CodePromo(78,new Date("26/11/2014"), new Date("10/12/2014") , "AZERTYN"));//invalide
+        //cprepository.save(new CodePromo(78,new Date("26/11/2014"), new Date("10/12/2014") , "AZERTYN"));//invalide
         cprepository.save(new CodePromo(98,new Date("10/12/2014"), new Date("11/12/2014") , "AZERTYB"));// invalide
         
         

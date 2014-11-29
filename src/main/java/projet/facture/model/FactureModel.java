@@ -1,6 +1,7 @@
 package projet.facture.model;
 
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -68,8 +69,9 @@ public class FactureModel {
 		return montantTTC;
 	}
 
-	public void setMontantTTC(double montantTTC) {
-		this.montantTTC = montantTTC;
+	public void setMontantTTC(double d) {
+		//DecimalFormat df = new DecimalFormat("0.00");
+		this.montantTTC =d;
 	}
 
 	public Date getDatecommande() {
