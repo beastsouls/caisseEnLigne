@@ -123,7 +123,8 @@ color:white;
 		<ul class="tabs">
 		
 		<li>
-          <input type="radio" name="tabs" id="tab1" checked="checked"/>
+          <input th:if="${type}==0 or ${type}==1 or ${type}==null" type="radio" name="tabs" id="tab1" checked="checked"/>
+          <input th:if="${type}!=0 and ${type}!=1" type="radio" name="tabs" id="tab1"/>
           <label for="tab1">Nourriture</label>
           <div id="tab-content1" class="tab-content animated fadeIn">
 					<!-- style="border: 2px solid #a1a1a1; padding: 10px 20px; background: #dddddd; width: 350px; border-radius: 15px;"> -->
@@ -139,7 +140,8 @@ color:white;
 		
 	
         <li>
-          <input type="radio" name="tabs" id="tab2"/>
+          <input th:if="${type}==2" type="radio" name="tabs" id="tab2" checked="checked"/>
+          <input th:if="${type}!=2" type="radio" name="tabs" id="tab2" />
           <label for="tab2">Boissons</label>
           <div id="tab-content2" class="tab-content animated fadeIn">
 				<!-- 	style="border: 2px solid #a1a1a1; padding: 10px 20px; background: #dddddd; width: 350px; border-radius: 15px;"> -->
@@ -154,7 +156,8 @@ color:white;
         </li>
         
         <li>
-          <input type="radio" name="tabs" id="tab3"/>
+          <input th:if="${type}==3" type="radio" name="tabs" id="tab3" checked="checked"/>
+          <input th:if="${type}!=3" type="radio" name="tabs" id="tab3"/>
           <label for="tab3">Vêtements</label>
           <div id="tab-content3" class="tab-content animated fadeIn">
 					<!-- style="border: 2px solid #a1a1a1; padding: 10px 20px; background: #dddddd; width: 350px; border-radius: 15px;"> -->
@@ -169,7 +172,8 @@ color:white;
         </li>
         
         <li>
-          <input type="radio" name="tabs" id="tab4"/>
+          <input th:if="${type}==4" type="radio" name="tabs" id="tab4" checked="checked"/>
+           <input th:if="${type}!=4" type="radio" name="tabs" id="tab4"/>
           <label for="tab4">Electroménager</label>
           <div id="tab-content4" class="tab-content animated fadeIn">
 					<!-- style="border: 2px solid #a1a1a1; padding: 10px 20px; background: #dddddd; width: 350px; border-radius: 15px;"> -->
@@ -184,7 +188,8 @@ color:white;
         </li>
         
         <li>
-          <input type="radio" name="tabs" id="tab5"/>
+          <input th:if="${type}==5" type="radio" name="tabs" id="tab5" checked="checked"/>
+          <input th:if="${type}!=5" type="radio" name="tabs" id="tab5"/>
           <label for="tab5">Autre</label>
           <div id="tab-content5" class="tab-content animated fadeIn">
             <!-- style="border: 2px solid #a1a1a1; padding: 10px 20px; background: #dddddd; width: 350px; border-radius: 15px;"> -->
@@ -303,18 +308,12 @@ color:white;
 			
 			
 			
-			<tr  th:switch="${session.message}" >
-				<td th:case="0"><span style="color:red;">
-				<script>
-					alert("Bon de reduction invalide");
-				</script>
-				
-				</span></td> 
+<!-- 			<tr  th:switch="${session.message}" > -->
 <!-- 				<td th:case="1"><span style="color:green;">Le bon de reduction a bien était pris en compte</span></td> -->
-<!-- 				<td th:case="2"><span style="color:red;">Le bon de reduction n'existe pas</span></td> -->
+<!--       			<td th:case="0"><span style="color:red;">Le bon de reduction est invalide</span></td>  -->
 			
 
-			</tr>
+<!-- 			</tr> -->
 			
 			
 			<tr>
